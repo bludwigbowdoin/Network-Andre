@@ -2,8 +2,8 @@ import spacy
 from spacy.matcher import Matcher
 
 
-nlp = spacy.load("en_core_web_sm")
-matcher = Matcher(nlp.vocab)
+# nlp = spacy.load("en_core_web_sm")
+# matcher = Matcher(nlp.vocab)
 
 
 with open('season2ep1.txt') as f:
@@ -11,8 +11,42 @@ with open('season2ep1.txt') as f:
 
 text = contents
 
+
+
+
+
+# def set_custom_boundaries(doc):
+#      # Adds support to use `\n` as the delimiter for sentence detection
+#     for token in doc[:-1]:
+#         if token.text == '\n':
+#             doc[token.i+1].is_sent_start = True
+#     return doc
+
+
+custom_nlp = spacy.load('en_core_web_sm')
+config = {"punct_chars": ['\n']}
+# custom_nlp.add_pipe(set_custom_boundaries, before='parser')
+custom_nlp.add_pipe("sentencizer", config=config)
+for sent in custom_nlp(text).sents:
+    print('next sentence:')
+    print(sent)
+
+
+
+# custom_new_line_doc = custom_nlp(text)
+# custom_new_line_sentences = list(custom_new_line_doc.sents)
+# for sentence in custom_new_line_sentences:
+#     print(sentence)
+
+
+
+'''
+
+
 # Process the text
+
 doc = nlp(text)
+
 
 for token in doc:
     # Get the token text, part-of-speech tag and dependency label
@@ -39,3 +73,4 @@ ladies_and_gentlemen = doc[0:3]
 
 # Print the span text
 print("Missing entity:", ladies_and_gentlemen.text)
+'''
