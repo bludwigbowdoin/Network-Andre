@@ -9,11 +9,16 @@ from spacy.matcher import Matcher
 with open('season2ep1.txt') as f:
     contents = f.read()
 
+with open('season2ep3.txt') as f:
+    contents = f.read()
+
+with open('season5ep5.txt') as f:
+    contents = f.read()
+
+with open('season5ep6.txt') as f:
+    contents = f.read()
+
 text = contents
-
-
-
-
 
 # def set_custom_boundaries(doc):
 #      # Adds support to use `\n` as the delimiter for sentence detection
@@ -30,7 +35,6 @@ custom_nlp.add_pipe("sentencizer", config=config)
 for sent in custom_nlp(text).sents:
     print('next sentence:')
     print(sent)
-
 
 
 # custom_new_line_doc = custom_nlp(text)
