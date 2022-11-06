@@ -11,15 +11,26 @@ class Andre:
     def __init__(self, nlp, text):
         self.nlp = nlp 
         self.text = text
-        self.processed = nlp(text) 
+        self.doc = nlp(text) 
 
-    def sentences(self):
+    def print_sentences(self):
         config = {"punct_chars": ['\n']}
         # custom_nlp.add_pipe(set_custom_boundaries, before='parser')
         self.nlp.add_pipe("sentencizer", config=config)
-        for sent in self.processed.sents:
+        for sent in self.doc.sents:
             print('next sentence:')
             print(sent) 
+        
+
+        
+
+    def no_stop_words(self):
+        token_list = []
+        for token in self.doc:
+            if not token.is_stop:
+                token_list.append(token)
+        
+        return token_list
 
 # def set_custom_boundaries(doc):
 #      # Adds support to use `\n` as the delimiter for sentence detection
