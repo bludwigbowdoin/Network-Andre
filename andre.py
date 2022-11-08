@@ -1,3 +1,4 @@
+import os
 import spacy
 from spacy.matcher import Matcher
 
@@ -13,6 +14,14 @@ class Andre:
         self.text = text
         self.doc = nlp(text) 
 
+
+    def speak_text(self, text=None):
+        print("speak text now")
+        if text == None:
+            os.system("say  " + "this is a test hello")   # test works, full text does not yet 
+        else: 
+            os.system("say  " + text)
+
     def print_sentences(self):
         config = {"punct_chars": ['\n']}
         # custom_nlp.add_pipe(set_custom_boundaries, before='parser')
@@ -20,8 +29,6 @@ class Andre:
         for sent in self.doc.sents:
             print('next sentence:')
             print(sent) 
-        
-
         
 
     def no_stop_words(self):

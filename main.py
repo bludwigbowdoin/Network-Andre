@@ -22,9 +22,10 @@ def main():
     text = contents
     custom_nlp = spacy.load('en_core_web_sm')
     andre_example = Andre(custom_nlp, text)
-    andre_example.print_sentences()
+    # andre_example.print_sentences()
 
-    print(andre_example.no_stop_words())
+    andre_example.speak_text()
+    # print(andre_example.no_stop_words())
     
 
 
