@@ -3,6 +3,7 @@ logging.getLogger().setLevel(logging.CRITICAL)
 import torch
 import numpy as np
 from transformers import GPT2Tokenizer, GPT2LMHeadModel
+import streamlit as st
 
 device = 'cpu'
 if torch.cuda.is_available():
@@ -40,6 +41,11 @@ def generate_some_text(input_str, text_len = 250):
 
         output_list = list(cur_ids.squeeze().to('cpu').numpy())
         output_text = tokenizer.decode(output_list)
-        print(output_text)
+
+        st.write(output_text)
+
+        return output_text
+
+
 
 

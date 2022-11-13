@@ -40,8 +40,6 @@ tokenizer = GPT2Tokenizer.from_pretrained('gpt2-medium')
 model = GPT2LMHeadModel.from_pretrained('gpt2-medium')
 model = model.to(device)
 
-print(generate_some_text("Hello good sir, how do you ", text_len = 10))
-
 
 
 # Just some fun
@@ -50,14 +48,12 @@ loading_messages = ["Waiting..."]
 # Constants
 if developer:
     seqlen = st.number_input('seqlen', value=100)
-    lstm_diversity = st.number_input('lstm_diversity', value=0.2)
-    lstm_max_length = st.number_input('lstm_max_length', value=250)
-    gpt3_temperature = st.number_input('gpt3_temperature', value=0.1)
+    # lstm_diversity = st.number_input('lstm_diversity', value=0.2)
+    # lstm_max_length = st.number_input('lstm_max_length', value=250)
+    # gpt3_temperature = st.number_input('gpt3_temperature', value=0.1)
 else:
-    seqlen = 100
-    lstm_diversity = 0.2
-    lstm_max_length = 250
-    gpt3_temperature = 0.1
+    seqlen = 10
+
 
 # Generate Text Function
 def generate_text(episode, seed, debug):
@@ -124,16 +120,20 @@ def generate_text(episode, seed, debug):
 
 
 option_2 = st.slider('How many dialogs should we generate?', 1, 5, 1)
-option_3 = st.selectbox('Select Episode 1', episodes)
-option_4 = st.selectbox('Select Episode 2', episodes)
+# option_3 = st.selectbox('Select Episode 1', episodes)
+# option_4 = st.selectbox('Select Episode 2', episodes)
 
 conversation_seed = st.text_input("Prompt", "The soul is")
+
 
 if st.button('Generate!'):
 
     for i in range(option_2):
-        conversation_seed = generate_text(option_3, conversation_seed, developer)
-        conversation_seed = generate_text(option_4, conversation_seed, developer)
+        conversation_seed = generate_some_text(conversation_seed, text_len = 10)
+        conversation_seed = generate_some_text(conversation_seed, text_len = 10)
+
+        # conversation_seed = generate_text(option_3, conversation_seed, developer)
+        # conversation_seed = generate_text(option_4, conversation_seed, developer)
 
     st.balloons()
     st.header("Tusinde Tak")
