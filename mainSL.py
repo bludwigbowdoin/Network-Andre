@@ -14,7 +14,6 @@ st.set_page_config(
      page_title="Network Andre",
      page_icon="📹",
  )
-
 st.title("Network Andre")
 st.image("./ericAndreShow.jpg", caption="The Eric Andre Show")
 developer = st.checkbox('Developer Mode')   # dev mode toggle
@@ -30,16 +29,6 @@ for episode in episode_dict.keys():
         episode_dict[episode] = contents
         
 episodes = list(episode_dict.keys())
-
-# gpt2 setup
-device = 'cpu'
-if torch.cuda.is_available():
-    device = 'cuda'
-
-tokenizer = GPT2Tokenizer.from_pretrained('gpt2-medium')
-model = GPT2LMHeadModel.from_pretrained('gpt2-medium')
-model = model.to(device)
-
 
 
 # Just some fun
