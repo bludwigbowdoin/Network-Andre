@@ -1,11 +1,13 @@
-import pandas as pd
 import streamlit as st
 import numpy as np
-import tensorflow
-from tensorflow import keras
 import os
 import random
 import re
+import logging
+logging.getLogger().setLevel(logging.CRITICAL)
+import torch
+from transformers import GPT2Tokenizer, GPT2LMHeadModel
+from gpt2model import *
 
 # Streamlit Page Config
 st.set_page_config(
@@ -15,7 +17,6 @@ st.set_page_config(
 
 st.title("Network Andre")
 st.image("./ericAndreShow.jpg", caption="The Eric Andre Show")
-
 developer = st.checkbox('Developer Mode')   # dev mode toggle
 
 # Data prep
@@ -28,30 +29,23 @@ for episode in episode_dict.keys():
         # contents = f.read()
         episode_dict[episode] = contents
         
-
-# data_raw = pd.read_csv("data/philosophy_data.csv")
-# data_raw = data_raw.drop(
-#     ['sentence_spacy', 'original_publication_date', 'corpus_edition_date', 'sentence_length', 'sentence_lowered', 'lemmatized_str'], 
-#     axis=1
-# )
-# philosophers = list(dict.fromkeys(data_raw['author'].tolist()))
-
 episodes = list(episode_dict.keys())
+
+# gpt2 setup
+device = 'cpu'
+if torch.cuda.is_available():
+    device = 'cuda'
+
+tokenizer = GPT2Tokenizer.from_pretrained('gpt2-medium')
+model = GPT2LMHeadModel.from_pretrained('gpt2-medium')
+model = model.to(device)
+
+print(generate_some_text("Hello good sir, how do you ", text_len = 10))
+
 
 
 # Just some fun
-loading_messages = ["Reviving the dead...", "Cloning Evan Trabitz...", "Disappointing Ulrich...", "Sequencing Genomes...", 
-    "Gaslighting our way into the group...", "Travelling to Denmark...", "Fighting the queen...", "Crashing the bus...", 
-    "Not bringing the wand to London...", "Making 9 BILLION QUID...", "Seeing the whites of their eyes...", "Visiting Silicon Roundabout...", 
-    "Writing the blog post...", "Running away from tibetan monks...", "Squeening Bjorn...", "Turning on supercomputers...", 
-    "Sending Grace to Switzerland...", "Using the bathroom at Tivoli...", "Being mad bro...", "Rickrolling Evan...", 
-    "Pretending Ulrich has a wife...", "Getting out of here...", "Jeg bor i Lyngby...", "Bringing Tuborg to class...", 
-    "5 Tuborgs in...", "Approaching boombox guy...", "Not buying overpriced coffee at Brickaccino...", 
-    "Bjorn breaking his leg in Lego House...", "Evan undergoing meiosis...", "Crimping quid...", "Searching for mini-keg...", 
-    "Trying to understand spoken British...", "Red Bull Red Bull Red Bull...", "MARCH 24TH WATER BOTTLE INCIDENT", 
-    "Writing fanfictions about Evan...", "Not scheduling field studies...", "Getting drunk before 8am class...", 
-    "Getting ourselves to Roskilde...", "Studying WiNd EnErGy...", "Volunteer firefighting...", "Bricking up...", 
-    "Falling down stairs at an FCK game...", "Breaking the laws of robotics...", "Falling in love with Pepper..."]
+loading_messages = ["Waiting..."]
 
 # Constants
 if developer:
@@ -128,18 +122,6 @@ def generate_text(episode, seed, debug):
 
     return response_text
 
-# Function to find the first alphebetical character in a string and return its location.
-def findFirstLetter(string):
-    i = 0
-    letters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",
-    "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"] # Evan did this
-    for char in string:
-        if char in letters:
-            return i
-
-        i = i + 1
-
-    return 0
 
 option_2 = st.slider('How many dialogs should we generate?', 1, 5, 1)
 option_3 = st.selectbox('Select Episode 1', episodes)
