@@ -10,8 +10,8 @@ if torch.cuda.is_available():
     device = 'cuda'
 
 
-tokenizer = GPT2Tokenizer.from_pretrained('gpt2-medium')
-model = GPT2LMHeadModel.from_pretrained('gpt2-medium')
+tokenizer = GPT2Tokenizer.from_pretrained('gpt2-xl')
+model = GPT2LMHeadModel.from_pretrained('gpt2-xl')
 model = model.to(device)
 
 # Function to first select topN tokens from the probability list and then based on the selected N word distribution
