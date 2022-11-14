@@ -3,11 +3,14 @@ import numpy as np
 import os
 import random
 import re
+import spacy
+from spacy.matcher import Matcher
 import logging
 logging.getLogger().setLevel(logging.CRITICAL)
 import torch
 from transformers import GPT2Tokenizer, GPT2LMHeadModel
 from gpt2model import *
+from andre import *
 
 # Streamlit Page Config
 st.set_page_config(
@@ -18,17 +21,22 @@ st.title("Network Andre")
 st.image("./ericAndreShow.jpg", caption="The Eric Andre Show")
 developer = st.checkbox('Developer Mode')   # dev mode toggle
 
-# Data prep
-episode_dict = {'season25ep1356.txt':'', 'season2ep1.txt':'', 'season2ep3.txt':'', 'season5ep5.txt':'', 'season5ep6.txt':''}
+episodes = ['season25ep1356.txt', 'season2ep1.txt', \
+            'season2ep3.txt', 'season5ep5.txt', 'season5ep6.txt']
 
-for episode in episode_dict.keys():
-    with open(episode) as f:
-        contents = re.sub(r'someword=|\,.*|\#.*','', f.read())
-        contents = re.sub(r'\n+', '\n', contents).strip()
-        # contents = f.read()
-        episode_dict[episode] = contents
-        
-episodes = list(episode_dict.keys())
+episode_title = st.selectbox('Select Episode', episodes)
+
+
+
+nlp = spacy.load("en_core_web_sm")
+matcher = Matcher(nlp.vocab)
+
+andre = Andre(nlp, episode_title)
+andre.set_text()
+
+
+for sent in andre.sentences():
+    st.write(sent)
 
 
 # Just some fun

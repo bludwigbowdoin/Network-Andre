@@ -1,6 +1,7 @@
 import os
 import spacy
 from spacy.matcher import Matcher
+import re 
 
 
 # nlp = spacy.load("en_core_web_sm")
@@ -9,10 +10,21 @@ from spacy.matcher import Matcher
 
 
 class Andre:
-    def __init__(self, nlp, text):
+    def __init__(self, nlp, title):
         self.nlp = nlp 
-        self.text = text
-        self.doc = nlp(text) 
+        self.doc = None
+        self.title = title
+        self.full_text = ''
+
+    def set_text(self):
+
+        # Data prep
+        with open(self.title) as f:
+            contents = re.sub(r'someword=|\,.*|\#.*','', f.read())
+            contents = re.sub(r'\n+', '\n', contents).strip()
+
+        self.full_text = contents
+        self.doc = self.nlp(self.full_text)
 
 
     def speak_text(self, text=None):
@@ -22,13 +34,15 @@ class Andre:
         else: 
             os.system("say  " + text)
 
-    def print_sentences(self):
+    def sentences(self):
         config = {"punct_chars": ['\n']}
         # custom_nlp.add_pipe(set_custom_boundaries, before='parser')
         self.nlp.add_pipe("sentencizer", config=config)
-        for sent in self.doc.sents:
-            print('next sentence:')
-            print(sent) 
+
+        return self.doc.sents
+        # for sent in self.doc.sents:
+        #     print('next sentence:')
+        #     print(sent) 
         
 
     def no_stop_words(self):
