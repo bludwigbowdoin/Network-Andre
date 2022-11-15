@@ -23,9 +23,9 @@ developer = st.checkbox('Developer Mode')   # dev mode toggle
 
 episodes = ['season25ep1356.txt', 'season2ep1.txt', \
             'season2ep3.txt', 'season5ep5.txt', 'season5ep6.txt']
-
 episode_title = st.selectbox('Select Episode', episodes)
 
+voices = ["Bells", "Bad News", "Fred", "Ralph", "Trinoids", "Whisper", "Zarvox"]
 
 
 nlp = spacy.load("en_core_web_sm")
@@ -33,23 +33,26 @@ matcher = Matcher(nlp.vocab)
 
 andre = Andre(nlp, episode_title)
 andre.set_text()
+seqlen = 30
+sent_list = list(andre.sentences())
+
+rand_sent = random.choice(sent_list)
+voice = random.choice(voices)
+st.write("say -v " + voice + " \"" + str(rand_sent)+ "\"")
+os.system("say -v " + voice + " \"" + str(rand_sent)+ "\"")
 
 
-for sent in andre.sentences():
-    st.write(sent)
+# for sent in sent_list:
+#     st.write(sent)
+#     voice = random.choice(voices)
+#     st.write("say -v " + voice + " \"" + str(sent)+ "\"")
+#     os.system("say -v " + voice + " \"" + str(sent)+ "\"")
 
 
 # Just some fun
 loading_messages = ["Waiting..."]
 
-# Constants
-if developer:
-    seqlen = st.number_input('seqlen', value=100)
-    # lstm_diversity = st.number_input('lstm_diversity', value=0.2)
-    # lstm_max_length = st.number_input('lstm_max_length', value=250)
-    # gpt3_temperature = st.number_input('gpt3_temperature', value=0.1)
-else:
-    seqlen = 10
+
 
 
 # Generate Text Function
@@ -126,8 +129,8 @@ conversation_seed = st.text_input("Prompt", "The soul is")
 if st.button('Generate!'):
 
     for i in range(option_2):
-        conversation_seed = generate_some_text(conversation_seed, text_len = 10)
-        conversation_seed = generate_some_text(conversation_seed, text_len = 10)
+        conversation_seed = generate_some_text(conversation_seed, text_len = seqlen)
+        conversation_seed = generate_some_text(conversation_seed, text_len = seqlen)
 
         # conversation_seed = generate_text(option_3, conversation_seed, developer)
         # conversation_seed = generate_text(option_4, conversation_seed, developer)
