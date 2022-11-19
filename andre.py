@@ -4,11 +4,6 @@ from spacy.matcher import Matcher
 import re 
 
 
-# nlp = spacy.load("en_core_web_sm")
-# matcher = Matcher(nlp.vocab)
-
-
-
 class Andre:
     def __init__(self, nlp, title):
         self.nlp = nlp 
@@ -17,7 +12,6 @@ class Andre:
         self.full_text = ''
 
     def set_text(self):
-
         # Data prep
         with open(self.title) as f:
             contents = re.sub(r'someword=|\,.*|\#.*','', f.read())
@@ -26,24 +20,10 @@ class Andre:
         self.full_text = contents
         self.doc = self.nlp(self.full_text)
 
-
-    def speak_text(self, text=None):
-        print("speak text now")
-        if text == None:
-            os.system("say  " + "this is a test hello")   # test works, full text does not yet 
-        else: 
-            os.system("say  " + text)
-
     def sentences(self):
         config = {"punct_chars": ['\n']}
-        # custom_nlp.add_pipe(set_custom_boundaries, before='parser')
         self.nlp.add_pipe("sentencizer", config=config)
-
         return self.doc.sents
-        # for sent in self.doc.sents:
-        #     print('next sentence:')
-        #     print(sent) 
-        
 
     def no_stop_words(self):
         token_list = []
@@ -53,12 +33,50 @@ class Andre:
         
         return token_list
 
-# def set_custom_boundaries(doc):
-#      # Adds support to use `\n` as the delimiter for sentence detection
-#     for token in doc[:-1]:
-#         if token.text == '\n':
-#             doc[token.i+1].is_sent_start = True
-#     return doc
+    def tokens_pos(self):
+        # for all tokens in self, organize them by part-of-speech
+        pos_dict = {}
+        for token in self.doc:
+            if token.pos_ not in pos_dict.keys():
+                word_list = []
+                word_list.append(token.text)
+                pos_dict[token.pos_] = word_list
+            else: 
+                word_list = pos_dict[token.pos_]
+                word_list.append(token.text)
+                pos_dict[token.pos_] = word_list
+        return pos_dict
+
+    def swap_within_pos(self, source_andre):
+        # initialize new poem output string 
+        # go through tokens of self 
+        # if token.pos_ = ADJ, ADV, INTJ, NOUN, VERB, 
+        #   then randomly select one of those POS from source_andre
+        #   add it to output string 
+        # else 
+        #   add what was previously there to output string 
+        
+        # return output string 
+        pass 
+
+
+
+
+nlp = spacy.load("en_core_web_sm")
+matcher = Matcher(nlp.vocab)
+
+
+andre = Andre(nlp, "season25ep1356.txt")
+andre.set_text()
+
+this_dict = andre.tokens_pos()
+
+for key, values in this_dict.items():
+    print(key)
+    for value in values:
+        print(value)
+    print("------------")
+
 
 
 # custom_new_line_doc = custom_nlp(text)

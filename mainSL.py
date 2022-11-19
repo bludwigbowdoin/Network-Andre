@@ -34,7 +34,6 @@ episode_title = st.selectbox('Select Source Episode', EPISODES)
 
 andre = Andre(nlp, episode_title)
 andre.set_text()
-seqlen = 30
 sent_list = list(andre.sentences())
 rand_sent = random.choice(sent_list)
 
