@@ -14,9 +14,11 @@ tokenizer = GPT2Tokenizer.from_pretrained('gpt2-xl')
 model = GPT2LMHeadModel.from_pretrained('gpt2-xl')
 model = model.to(device)
 
-# Function to first select topN tokens from the probability list and then based on the selected N word distribution
-# get random token ID
 def choose_from_top(probs, n=5):
+    """
+    Function to first select topN tokens from the probability list and then
+    based on the selected N word distribution get random token ID.
+    """
     ind = np.argpartition(probs, -n)[-n:]
     top_prob = probs[ind]
     top_prob = top_prob / np.sum(top_prob) # Normalize
