@@ -19,7 +19,9 @@ VOICES = ["Bells", "Bad News", "Fred", "Ralph", "Trinoids", "Whisper", "Zarvox"]
 SEEDS = ["I want to be your sunset eyes, \n those blue skies, your perfect starry night", \
     "Throw rocks at my window, \n Hold the boom box up high. ", \
         "I know you love cheesy love songs, \n So here’s one for you my dear", \
-            "I wish I could write a book, \n It would be about me and you"]
+            "I wish I could write a book, \n It would be about me and you", \
+                "Roses are red, violets are blue.",\
+                    "I know its a cliche to say how time flies when I'm with you."]
 
 nlp = spacy.load("en_core_web_sm")
 matcher = Matcher(nlp.vocab)
@@ -30,7 +32,7 @@ st.set_page_config(
      page_icon="📹",
  )
 st.title("Network Andre")
-st.image("./ericAndreShow.jpg", caption='The set of "The Eric Andre Show"')
+st.image("./ericAndreShow.jpg")
 
 developer = st.checkbox('Developer mode')   # dev mode toggle
 
@@ -62,6 +64,8 @@ temperature = st.slider("Temperature (how much Eric Andre)", \
 
 if st.button('Generate!'):
     
+    st.image("./ericFace.gif")
+
     generated_text = generate_some_text(seed, text_len)
     poetry_doc = nlp(generated_text)
     poetry_score = sentence_score(andre_doc.lemmatize_useful_words(poetry_doc))
@@ -70,41 +74,45 @@ if st.button('Generate!'):
     best_text_swapped = ""
     worst_score = 100000000000
     best_score = 0
+    best_speech = ""
+    worst_speech = ""
 
     for i in range(50):
 
-        if developer:
-            st.write("GPT-2 text: \n" + generated_text)
-            st.write("Score: \n", poetry_score)
-
-    
         swapped_output = andre_doc.swap_within_pos(poetry_doc, temperature)
-
         rand_voice = random.choice(VOICES)
         speech_text = "say -v " + rand_voice + " \"" + swapped_output + "\""
-        st.write(swapped_output)
-
         swapped_doc = nlp(swapped_output)
-
         swapped_score = sentence_score(andre_doc.lemmatize_useful_words(swapped_doc))
+        
         if swapped_score > best_score: 
             best_score = swapped_score
             best_text_swapped = swapped_output
+            best_speech = speech_text
         
         elif swapped_score < worst_score: 
             worst_score = swapped_score
             worst_text_swapped = swapped_output
-        st.write(swapped_score)
+            worst_speech = speech_text
+        
+        if developer:
+            st.write("GPT-2 text: \n" + generated_text)
+            st.write("Score: \n", poetry_score)
+            st.write(swapped_output)
+            st.write(swapped_score)
 
-        # if st.button('Speak!'):
-        #     st.system(speech_text)
+
 
 
     st.write("WORST: \n" + worst_text_swapped)
     st.write("score: ", worst_score)
+    system(worst_speech)
 
     st.write("BEST: \n" + best_text_swapped)
     st.write("score: ", best_score)
+    system(best_speech)
+
+    st.image("./endOfShow.jpg")
 
     # for i in range(option_2):
     #     conversation_seed = generate_some_text(conversation_seed, text_len = seqlen)
@@ -112,8 +120,6 @@ if st.button('Generate!'):
 
     #     # conversation_seed = generate_text(option_3, conversation_seed, developer)
     #     # conversation_seed = generate_text(option_4, conversation_seed, developer)
-
-    st.balloons()
 
 
 

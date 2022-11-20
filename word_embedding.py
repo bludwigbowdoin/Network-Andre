@@ -53,7 +53,6 @@ def sentence_score(sentence):
         for second_word_index in range(1+first_word_index, len(sentence)):
             second_word = sentence[second_word_index]
             pair_score = similarity_score(first_word, second_word)
-            print(pair_score)
             score += pair_score
 
 
