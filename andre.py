@@ -72,7 +72,10 @@ class Andre:
         #   add what was previously there to output string 
         other_pos_dict = self.tokens_pos()
         for token in poetry.doc: 
-            if token.pos_ in SPECIAL_POS and random.random() < temperature: 
+            if random.random() < (temperature / 10):   # random interjection
+                token_to_add = random.choice(other_pos_dict["INTJ"])
+                output_string = output_string + " " + token_to_add
+            elif token.pos_ in SPECIAL_POS and random.random() < temperature: 
                 token_to_add = random.choice(other_pos_dict[token.pos_])
                 output_string = output_string + " " + token_to_add
             else:
