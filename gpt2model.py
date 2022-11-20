@@ -43,9 +43,7 @@ def generate_some_text(input_str, text_len = 250):
 
         output_list = list(cur_ids.squeeze().to('cpu').numpy())
         output_text = tokenizer.decode(output_list)
-
-        st.write(output_text)
-
+        
         return output_text
 
 

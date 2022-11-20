@@ -1,6 +1,6 @@
 import streamlit as st
 import numpy as np
-import os
+from os import system
 import random
 import re
 import spacy
@@ -28,7 +28,11 @@ st.set_page_config(
 st.title("Network Andre")
 st.image("./ericAndreShow.jpg", caption='The set of "The Eric Andre Show"')
 
-episode_title = st.selectbox('Select Source Episode', EPISODES)
+developer = st.checkbox('Developer Mode')   # dev mode toggle
+
+
+
+episode_title = st.selectbox('Source episode', EPISODES)
 
 
 
@@ -38,24 +42,32 @@ sent_list = list(andre.sentences())
 rand_sent = random.choice(sent_list)
 
 
-# for sent in sent_list:
-#     st.write(sent)
-#     rand_voice = random.choice(VOICES)
-#     st.write("say -v " + rand_voice + " \"" + str(sent)+ "\"")
-#     os.system("say -v " + rand_voice + " \"" + str(sent)+ "\"")
-
-
 seed = st.text_input("Prompt", "Roses are red, violets are blue, ")
-text_len = st.number_input("Length of response (in characters)", \
-    min_value=1, max_value=500, value=50)
+text_len = st.number_input("Approximate length of response (in words)", \
+    min_value=1, max_value=500, value=25)
+
+temperature = st.slider("Temperature (how much Eric Andre)", \
+    min_value=0.0, max_value=1.0, value=0.5, step=0.05)
 
 
 if st.button('Generate!'):
+
     generated_text = generate_some_text(seed, text_len)
+
+    if developer:
+        st.write("GPT-2 text: \n" + generated_text)
+
+
+    poetry_doc = nlp(generated_text)
+
+    swapped_output = andre.swap_within_pos(poetry_doc, temperature)
+
     rand_voice = random.choice(VOICES)
-    speech_text = "say -v " + rand_voice + " \"" + generated_text + "\""
-    st.write(speech_text)
-    # st.system(speech_text)
+    speech_text = "say -v " + rand_voice + " \"" + swapped_output + "\""
+    st.write(swapped_output)
+
+    if st.button('Speak!'):
+        st.system(speech_text)
 
 
    

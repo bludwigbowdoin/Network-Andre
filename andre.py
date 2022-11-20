@@ -69,20 +69,21 @@ class Andre:
 
 
 
-nlp = spacy.load("en_core_web_sm")
-matcher = Matcher(nlp.vocab)
+# nlp = spacy.load("en_core_web_sm")
+# matcher = Matcher(nlp.vocab)
 
 
-poetry_doc = nlp("the rose is the most beautiful color of the shirt that he kicks down the road and on and on forever lovely.")
+# poetry_doc = nlp("the rose is the most beautiful color of the shirt that he kicks down the road and on and on forever lovely.")
 
-andre = Andre(nlp, "season25ep1356.txt")
-andre.set_text()
+# andre = Andre(nlp, "season25ep1356.txt")
+# andre.set_text()
 
-output = andre.swap_within_pos(poetry_doc, 0.3)
+# output = andre.swap_within_pos(poetry_doc, 0.3)
 
 
-print(output)
 
+
+#################
 
 # this_dict = andre.tokens_pos()
 
