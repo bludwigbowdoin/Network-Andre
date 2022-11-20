@@ -80,79 +80,24 @@ class Andre:
         return output_string 
 
 
-"""
-nlp = spacy.load("en_core_web_sm")
-matcher = Matcher(nlp.vocab)
 
-poetry_doc = nlp("the rose is the most beautiful color of the shirt that he kicks down the road and on and on forever lovely.")
+# nlp = spacy.load("en_core_web_sm")
+# matcher = Matcher(nlp.vocab)
 
-andre = Andre(nlp, "season25ep1356.txt")
-andre.set_text()
+# poetry_doc = nlp("the rose is the most beautiful color of the shirt that he kicks down the road and on and on forever lovely.")
 
-output = andre.swap_within_pos(poetry_doc, 0.3)
+# andre = Andre(nlp, "season25ep1356.txt")
+# andre.set_text()
 
-print(andre.lemmatize_useful_words(poetry_doc))
+# output = andre.swap_within_pos(poetry_doc, 0.3)
 
-print(sentence_score(andre.lemmatize_useful_words(poetry_doc)))
+# print(andre.lemmatize_useful_words(poetry_doc))
 
-"""
+# print(sentence_score(andre.lemmatize_useful_words(poetry_doc)))
 
-
-#################
-
-# this_dict = andre.tokens_pos()
-
-# for key, values in this_dict.items():
-#     print(key)
-#     for value in values:
-#         print(value)
-#     print("------------")
+# 
 
 
 
 
 
-
-
-
-# custom_new_line_doc = custom_nlp(text)
-# custom_new_line_sentences = list(custom_new_line_doc.sents)
-# for sentence in custom_new_line_sentences:
-#     print(sentence)
-
-
-
-'''
-
-
-# Process the text
-
-doc = nlp(text)
-
-
-for token in doc:
-    # Get the token text, part-of-speech tag and dependency label
-    token_text = token.text
-    token_pos = token.pos_
-    token_dep = token.dep_    
-    # This is for formatting only
-    print(f"{token_text:<12}{token_pos:<10}{token_dep:<10}")
-    print(spacy.explain(token_pos))
-
-
-# Iterate over the predicted entities
-print("\nentity stuff")
-for ent in doc.ents:
-    # Print the entity text and its label
-    print(ent.text, ent.label_)
-    print(spacy.explain(ent.label_))
-
-
-
-# Get the span for "iPhone X"
-print("\n")
-ladies_and_gentlemen = doc[0:3]
-
-# Print the span text
-print("Missing entity:", ladies_and_gentlemen.text)
-'''

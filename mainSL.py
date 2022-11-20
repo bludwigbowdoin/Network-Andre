@@ -16,6 +16,10 @@ from andre import *
 EPISODES = ['season2ep1.txt', 'season2ep3.txt', 'season5ep5.txt', \
     'season5ep6.txt', 'season25ep1356.txt']
 VOICES = ["Bells", "Bad News", "Fred", "Ralph", "Trinoids", "Whisper", "Zarvox"]
+SEEDS = ["I want to be your sunset eyes, \n those blue skies, your perfect starry night", \
+    "Throw rocks at my window, \n Hold the boom box up high. ", \
+        "I know you love cheesy love songs, \n So here’s one for you my dear", \
+            "I wish I could write a book, \n It would be about me and you"]
 
 nlp = spacy.load("en_core_web_sm")
 matcher = Matcher(nlp.vocab)
@@ -28,7 +32,7 @@ st.set_page_config(
 st.title("Network Andre")
 st.image("./ericAndreShow.jpg", caption='The set of "The Eric Andre Show"')
 
-developer = st.checkbox('Developer Mode')   # dev mode toggle
+developer = st.checkbox('Developer mode')   # dev mode toggle
 
 
 
@@ -42,7 +46,13 @@ sent_list = list(andre_doc.sentences())
 rand_sent = random.choice(sent_list)
 
 
-seed = st.text_input("Prompt", "Roses are red, violets are blue, ")
+
+if st.checkbox("Write your own seed"): 
+    seed = st.text_input("Seed")
+
+else:   
+    seed = st.selectbox("Seed", SEEDS)
+
 text_len = st.number_input("Approximate length of response (in words)", \
     min_value=1, max_value=500, value=25)
 
@@ -51,18 +61,21 @@ temperature = st.slider("Temperature (how much Eric Andre)", \
 
 
 if st.button('Generate!'):
+    
+    generated_text = generate_some_text(seed, text_len)
+    poetry_doc = nlp(generated_text)
+    poetry_score = sentence_score(andre_doc.lemmatize_useful_words(poetry_doc))
 
-    for i in range(5):
-        generated_text = generate_some_text(seed, text_len)
+    worst_text_swapped = ""
+    best_text_swapped = ""
+    worst_score = 100000000000
+    best_score = 0
+
+    for i in range(50):
 
         if developer:
             st.write("GPT-2 text: \n" + generated_text)
-
-
-        poetry_doc = nlp(generated_text)
-       
-        poetry_score = sentence_score(andre_doc.lemmatize_useful_words(poetry_doc))
-        st.write(poetry_score)
+            st.write("Score: \n", poetry_score)
 
     
         swapped_output = andre_doc.swap_within_pos(poetry_doc, temperature)
@@ -74,13 +87,25 @@ if st.button('Generate!'):
         swapped_doc = nlp(swapped_output)
 
         swapped_score = sentence_score(andre_doc.lemmatize_useful_words(swapped_doc))
+        if swapped_score > best_score: 
+            best_score = swapped_score
+            best_text_swapped = swapped_output
+        
+        elif swapped_score < worst_score: 
+            worst_score = swapped_score
+            worst_text_swapped = swapped_output
         st.write(swapped_score)
 
         # if st.button('Speak!'):
         #     st.system(speech_text)
 
 
-   
+    st.write("WORST: \n" + worst_text_swapped)
+    st.write("score: ", worst_score)
+
+    st.write("BEST: \n" + best_text_swapped)
+    st.write("score: ", best_score)
+
     # for i in range(option_2):
     #     conversation_seed = generate_some_text(conversation_seed, text_len = seqlen)
     #     conversation_seed = generate_some_text(conversation_seed, text_len = seqlen)
