@@ -13,8 +13,8 @@ from gpt2model import *
 from andre import *
 
 
-EPISODES = ['season25ep1356.txt', 'season2ep1.txt', \
-            'season2ep3.txt', 'season5ep5.txt', 'season5ep6.txt']
+EPISODES = ['season2ep1.txt', 'season2ep3.txt', 'season5ep5.txt', \
+    'season5ep6.txt', 'season25ep1356.txt']
 VOICES = ["Bells", "Bad News", "Fred", "Ralph", "Trinoids", "Whisper", "Zarvox"]
 
 nlp = spacy.load("en_core_web_sm")
