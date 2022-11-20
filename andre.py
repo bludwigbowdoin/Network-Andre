@@ -3,6 +3,9 @@ import spacy
 from spacy.matcher import Matcher
 import re 
 import random
+from word_embedding import *
+
+SPECIAL_POS = ["ADJ", "ADV", "INTJ", "NOUN", "VERB"]
 
 
 class Andre:
@@ -48,9 +51,18 @@ class Andre:
                 pos_dict[token.pos_] = word_list
         return pos_dict
 
+    def lemmatize_useful_words(self, poetry):
+        output_list = []
+
+        for token in poetry.doc: 
+            if token.pos_ in SPECIAL_POS: 
+                output_list.append(token.lemma_)
+
+        return output_list 
+
+
     def swap_within_pos(self, poetry, temperature):
         output_string = ""
-        special_pos = ["ADJ", "ADV", "INTJ", "NOUN", "VERB"]
         # initialize new poem output string 
         # go through tokens of self 
         # if token.pos_ = ADJ, ADV, INTJ, NOUN, VERB, 
@@ -60,7 +72,7 @@ class Andre:
         #   add what was previously there to output string 
         other_pos_dict = self.tokens_pos()
         for token in poetry.doc: 
-            if token.pos_ in special_pos and random.random() < temperature: 
+            if token.pos_ in SPECIAL_POS and random.random() < temperature: 
                 token_to_add = random.choice(other_pos_dict[token.pos_])
                 output_string = output_string + " " + token_to_add
             else:
@@ -68,19 +80,22 @@ class Andre:
         return output_string 
 
 
+"""
+nlp = spacy.load("en_core_web_sm")
+matcher = Matcher(nlp.vocab)
 
-# nlp = spacy.load("en_core_web_sm")
-# matcher = Matcher(nlp.vocab)
+poetry_doc = nlp("the rose is the most beautiful color of the shirt that he kicks down the road and on and on forever lovely.")
 
+andre = Andre(nlp, "season25ep1356.txt")
+andre.set_text()
 
-# poetry_doc = nlp("the rose is the most beautiful color of the shirt that he kicks down the road and on and on forever lovely.")
+output = andre.swap_within_pos(poetry_doc, 0.3)
 
-# andre = Andre(nlp, "season25ep1356.txt")
-# andre.set_text()
+print(andre.lemmatize_useful_words(poetry_doc))
 
-# output = andre.swap_within_pos(poetry_doc, 0.3)
+print(sentence_score(andre.lemmatize_useful_words(poetry_doc)))
 
-
+"""
 
 
 #################

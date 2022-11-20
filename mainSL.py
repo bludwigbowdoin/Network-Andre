@@ -36,9 +36,9 @@ episode_title = st.selectbox('Source episode', EPISODES)
 
 
 
-andre = Andre(nlp, episode_title)
-andre.set_text()
-sent_list = list(andre.sentences())
+andre_doc = Andre(nlp, episode_title)
+andre_doc.set_text()
+sent_list = list(andre_doc.sentences())
 rand_sent = random.choice(sent_list)
 
 
@@ -52,22 +52,32 @@ temperature = st.slider("Temperature (how much Eric Andre)", \
 
 if st.button('Generate!'):
 
-    generated_text = generate_some_text(seed, text_len)
+    for i in range(5):
+        generated_text = generate_some_text(seed, text_len)
 
-    if developer:
-        st.write("GPT-2 text: \n" + generated_text)
+        if developer:
+            st.write("GPT-2 text: \n" + generated_text)
 
 
-    poetry_doc = nlp(generated_text)
+        poetry_doc = nlp(generated_text)
+       
+        poetry_score = sentence_score(andre_doc.lemmatize_useful_words(poetry_doc))
+        st.write(poetry_score)
 
-    swapped_output = andre.swap_within_pos(poetry_doc, temperature)
+    
+        swapped_output = andre_doc.swap_within_pos(poetry_doc, temperature)
 
-    rand_voice = random.choice(VOICES)
-    speech_text = "say -v " + rand_voice + " \"" + swapped_output + "\""
-    st.write(swapped_output)
+        rand_voice = random.choice(VOICES)
+        speech_text = "say -v " + rand_voice + " \"" + swapped_output + "\""
+        st.write(swapped_output)
 
-    if st.button('Speak!'):
-        st.system(speech_text)
+        swapped_doc = nlp(swapped_output)
+
+        swapped_score = sentence_score(andre_doc.lemmatize_useful_words(swapped_doc))
+        st.write(swapped_score)
+
+        # if st.button('Speak!'):
+        #     st.system(speech_text)
 
 
    
