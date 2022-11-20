@@ -2,6 +2,7 @@ import os
 import spacy
 from spacy.matcher import Matcher
 import re 
+import random
 
 
 class Andre:
@@ -47,7 +48,9 @@ class Andre:
                 pos_dict[token.pos_] = word_list
         return pos_dict
 
-    def swap_within_pos(self, source_andre):
+    def swap_within_pos(self, poetry, temperature):
+        output_string = ""
+        special_pos = ["ADJ", "ADV", "INTJ", "NOUN", "VERB"]
         # initialize new poem output string 
         # go through tokens of self 
         # if token.pos_ = ADJ, ADV, INTJ, NOUN, VERB, 
@@ -55,10 +58,14 @@ class Andre:
         #   add it to output string 
         # else 
         #   add what was previously there to output string 
-        
-        # return output string 
-        pass 
-
+        other_pos_dict = self.tokens_pos()
+        for token in poetry.doc: 
+            if token.pos_ in special_pos and random.random() < temperature: 
+                token_to_add = random.choice(other_pos_dict[token.pos_])
+                output_string = output_string + " " + token_to_add
+            else:
+                output_string = output_string + " " + token.text 
+        return output_string 
 
 
 
@@ -66,16 +73,29 @@ nlp = spacy.load("en_core_web_sm")
 matcher = Matcher(nlp.vocab)
 
 
+poetry_doc = nlp("the rose is the most beautiful color of the shirt that he kicks down the road and on and on forever lovely.")
+
 andre = Andre(nlp, "season25ep1356.txt")
 andre.set_text()
 
-this_dict = andre.tokens_pos()
+output = andre.swap_within_pos(poetry_doc, 0.3)
 
-for key, values in this_dict.items():
-    print(key)
-    for value in values:
-        print(value)
-    print("------------")
+
+print(output)
+
+
+# this_dict = andre.tokens_pos()
+
+# for key, values in this_dict.items():
+#     print(key)
+#     for value in values:
+#         print(value)
+#     print("------------")
+
+
+
+
+
 
 
 
