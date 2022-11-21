@@ -67,7 +67,7 @@ def sentence_score(sentence):
 
     return score 
 
-def addition_score(sentence_1, sentence_2):
+def vector_addition_score(sentence_1, sentence_2):
     """
     wrote this myself 
     sentence inputs are lists of meaningful words
@@ -94,13 +94,10 @@ def addition_score(sentence_1, sentence_2):
     return np.dot(normalized_vector_1, normalized_vector_2)
 
 
-# scoreHere = addition_score(["dog", "dasjfh", "what", "comes", "later"], ["lizard", "prince", "here", "blob", "later"])
-scoreHere = addition_score(["dog", "what", "comes", "later", "cannon", "death", "pie"], ["dog", "dasjfh", "what", "comes", "later"])
 
-print(scoreHere)
+
 
 # print(sentence_score(["dog", "dasjfh", "what", "comes", "later"]))
-
 
 
 # # A word is as similar with itself as possible:
