@@ -23,7 +23,7 @@ SEEDS = ["I want to be your sunset eyes, \n those blue skies, your perfect starr
                 "Roses are red, violets are blue.",\
                     "I know its a cliche to say how time flies when I'm with you."]
 
-nlp = spacy.load("en_core_web_sm")
+nlp = spacy.load("en_core_web_lg")
 matcher = Matcher(nlp.vocab)
 
 # Streamlit Page Config

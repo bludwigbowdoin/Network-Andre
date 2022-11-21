@@ -24,8 +24,10 @@ normalized_embeddings = english_embeddings.astype('float32') / \
 index = {word: i for i, word in enumerate(english_words)}
 
 
-
 def similarity_score(word_1, word_2):
+    """
+    This function was taken from the repo at top of file
+    """
 
     if (word_1 not in index) | (word_2 not in index):
         return 0 
@@ -34,18 +36,25 @@ def similarity_score(word_1, word_2):
     return score
 
 def closest_to_vector(vector, number_of_neighbors):
+    """
+    This function was taken from the repo at top of file
+    """
     all_scores = np.dot(normalized_embeddings, vector)
     best_words = list(map(lambda i: english_words[i], \
         reversed(np.argsort(all_scores))))
     return best_words[:number_of_neighbors]
 
 def most_similar(word, number_of_neighbors):
+    """
+    This function was taken from the repo at top of file
+    """
     return closest_to_vector(normalized_embeddings[index[word], :], \
         number_of_neighbors)
 
 def sentence_score(sentence):
     """
     Pass in a sentence list where the words are only meaningful words 
+    wrote this myself 
     """
     score = 0
     for first_word_index in range(len(sentence)): 
@@ -57,6 +66,38 @@ def sentence_score(sentence):
 
 
     return score 
+
+def addition_score(sentence_1, sentence_2):
+    """
+    wrote this myself 
+    sentence inputs are lists of meaningful words
+    """
+    vector_1 = np.array([0]*300)   # these word embeddings have 300 dimensions 
+    vector_2 = np.array([0]*300)
+
+    for word in sentence_1: 
+        if word not in index:
+            vector_1 = vector_1 + np.array([0]*300)
+        else:
+            vector_1 = vector_1 + np.array(normalized_embeddings[index[word], :])
+
+    for word in sentence_2:
+        if word not in index:
+            vector_2 = vector_2 + np.array([0]*300)
+        else:
+            vector_2 = vector_2 + np.array(normalized_embeddings[index[word], :])
+
+
+    normalized_vector_1 = vector_1 / np.linalg.norm(vector_1)    
+    normalized_vector_2 = vector_2 / np.linalg.norm(vector_2)
+
+    return np.dot(normalized_vector_1, normalized_vector_2)
+
+
+# scoreHere = addition_score(["dog", "dasjfh", "what", "comes", "later"], ["lizard", "prince", "here", "blob", "later"])
+scoreHere = addition_score(["dog", "what", "comes", "later", "cannon", "death", "pie"], ["dog", "dasjfh", "what", "comes", "later"])
+
+print(scoreHere)
 
 # print(sentence_score(["dog", "dasjfh", "what", "comes", "later"]))
 
