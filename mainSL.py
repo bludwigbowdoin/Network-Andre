@@ -5,9 +5,7 @@ import random
 import re
 import spacy
 from spacy.matcher import Matcher
-import logging
-logging.getLogger().setLevel(logging.CRITICAL)
-import torch
+import matplotlib.pyplot as plt
 from transformers import GPT2Tokenizer, GPT2LMHeadModel
 from gpt2model import *
 from andre import *
@@ -48,10 +46,10 @@ else:
     seed = st.selectbox("Seed", SEEDS)
 
 text_len = st.number_input("Approximate length of response (in words)", \
-    min_value=1, max_value=500, value=25)
+    min_value=1, max_value=500, value=30)
 
-generations = st.number_input("Number of content generations", \
-    min_value=1, max_value=1000, value=50)
+generations = st.number_input("Number of content generations (max 5000)", \
+    min_value=1, max_value=5000, value=50)
 
 
 temperature = st.slider("Temperature (how much Eric Andre)", \
@@ -74,6 +72,8 @@ if st.button('Generate!'):
     best_score = 0
     worst_speech = ""
     best_speech = ""
+    sentence_scores = []
+
 
     # worst and best by vector score
     worst_text_vector = ""
@@ -82,19 +82,25 @@ if st.button('Generate!'):
     best_vector_score = 0.0
     worst_vector_speech = ""
     best_vector_speech = ""
+    vector_scores = []
 
     for i in range(generations):
 
         swapped_output = andre_doc.swap_within_pos(poetry_doc, temperature)
+        swapped_output = swapped_output.lower()
+        swapped_output = swapped_output.replace('"', '')
+        swapped_output = swapped_output.replace("'", "")
         rand_voice = random.choice(VOICES)
         speech_text = "say -v " + rand_voice + " \"" + swapped_output + "\""
         swapped_doc = nlp(swapped_output)
         swapped_useful_words = andre_doc.lemmatize_useful_words(swapped_doc)
 
         swapped_score = sentence_score(swapped_useful_words)
+        sentence_scores.append(swapped_score)
 
         vector_sum_score = vector_addition_score(swapped_useful_words, \
             poetry_useful_words)
+        vector_scores.append(vector_sum_score)
         
         if swapped_score > best_score: 
             best_score = swapped_score
@@ -142,6 +148,16 @@ if st.button('Generate!'):
     st.write("Best by vector sum:")
     st.write(best_text_vector)
     st.write("Vector sum score: ", best_vector_score)
+
+
+    if developer:
+        fig, score_data = plt.subplots()
+        score_data.scatter(sentence_scores, vector_scores)   
+        score_data.set_xlabel("Internal Sentence Score")
+        score_data.set_ylabel("Vector Sum Score")
+        score_data.set_ybound(0,1.1)
+        st.pyplot(fig)
+
 
     for i in range(3):
         rand_voice = random.choice(VOICES)
