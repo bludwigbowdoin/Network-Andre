@@ -49,6 +49,7 @@ def similarity_score(word_1, word_2):
         normalized_embeddings[index[word_2], :])
     return score
 
+
 def sentence_score(sentence):
     """
     Sums all similarity scores of distinct pairs of words in the sentence 
@@ -66,6 +67,7 @@ def sentence_score(sentence):
             score += pair_score
 
     return score 
+
 
 def vector_addition_score(sentence_1, sentence_2):
     """
