@@ -1,3 +1,15 @@
+"""
+Bjorn Ludwig
+CSCI 3725
+M6: Poetry Slam
+11/22/2022
+
+This file contains 
+
+
+
+"""
+
 import streamlit as st
 import numpy as np
 from os import system
@@ -6,20 +18,21 @@ import re
 import spacy
 import matplotlib.pyplot as plt
 import time
-from transformers import GPT2Tokenizer, GPT2LMHeadModel
 from gpt2model import *
 from andre import *
 
 
 EPISODES = ['season2ep1.txt', 'season2ep3.txt', 'season5ep5.txt', \
     'season5ep6.txt', 'season25ep1356.txt']
-VOICES = ["Fred", "Ralph", "Trinoids", "Whisper", "Zarvox"]
-SEEDS = ["I want to be your sunset eyes, \n those blue skies, your perfect starry night", \
-    "Throw rocks at my window, \n Hold the boom box up high. ", \
-        "I know you love cheesy love songs, \n So here's one for you my dear", \
-            "I wish I could write a book, \n It would be about me and you", \
-                "Roses are red, violets are blue.",\
-                    "I know its a cliche to say how time flies when I'm with you."]
+VOICES = ["Fred", "Ralph", "Trinoids", "Zarvox"]
+SEEDS = ["What is the meaning of life, Eric?", \
+    "Now listen to the following riddle: ", \
+        "I want to be your sunset eyes, \n those blue skies, your perfect starry night", \
+            "Throw rocks at my window, \n Hold the boom box up high. ", \
+                "I know you love cheesy love songs, \n So here's one for you my dear", \
+                    "I wish I could write a book, \n It would be about me and you", \
+                        "Roses are red, violets are blue.",\
+                            "I know its a cliche to say how time flies when I'm with you."]
 
 
 def developer_text(generated_text, poetry_score, swapped_output, \
@@ -34,20 +47,27 @@ def developer_text(generated_text, poetry_score, swapped_output, \
 
 def save_poetry(worst_text_swapped, worst_score, best_text_swapped, \
     best_score, worst_text_vector, worst_vector_score, best_text_vector, \
-        best_vector_score, generated_text):
+        best_vector_score, generated_text,text_len, generations, \
+            temperature, episode_title):
     curr_time = time.strftime("%H:%M:%S", time.localtime())
-    file_name = 'poetry_from_' + curr_time + '.txt'
+    file_name = 'poetry_from_' + curr_time + episode_title
     with open("output/" + file_name, 'w') as f:
-        f.write("GPT-2 text: \n" + generated_text)
+        f.write("text-len: " + str(text_len) + ", generations: " + \
+            str(generations) + ", temperature: " + str(temperature))
+        f.write("\n \n GPT-2 text: \n" + generated_text)
+        f.write("\n ----------------------------------------------------- \n")
         f.write("\n \n Worst by sentence relevance score: \n")
         f.write(str(worst_text_swapped) + "\n")
         f.write("Internal sentence relevance score: " + str(worst_score))
+        f.write("\n ----------------------------------------------------- \n")
         f.write("\n \n Best by sentence relevance score: \n")
         f.write(str(best_text_swapped)+ "\n")
         f.write("\n Internal sentence relevance score: " + str(best_score))
+        f.write("\n ----------------------------------------------------- \n")
         f.write("\n \n Worst by vector sum (plagiarism): \n")
         f.write(str(worst_text_vector)+ "\n")
         f.write("Vector sum (plagiarism) score: " + str(worst_vector_score))
+        f.write("\n ----------------------------------------------------- \n")
         f.write("\n \n Best by vector sum (plagiarism): \n")
         f.write(str(best_text_vector)+ "\n")
         f.write("Vector sum (plagiarism) score: " + str(best_vector_score))
@@ -72,10 +92,11 @@ st.set_page_config(
      page_icon="📹",
  )
 st.title("Network Andre")
-st.image("./ericAndreShow.jpg")
+st.image("images/ericAndreShow.jpg")
 
 developer = st.checkbox('Developer mode')   # dev mode toggle
 save_output = st.checkbox('Save output in .txt file')
+speak_output = st.checkbox('Speak generated output')
 episode_title = st.selectbox('Source episode', EPISODES)
 andre_doc = Andre(nlp, episode_title)
 andre_doc.set_text()
@@ -92,12 +113,12 @@ text_len = st.number_input("Approximate length of response (in words, max 500)",
     min_value=1, max_value=500, value=30)
 generations = st.number_input("Number of content generations (max 1000)", \
     min_value=1, max_value=1000, value=50)
-temperature = st.slider("Temperature (how much Eric Andre)", \
+temperature = st.slider("Temperature (how much Eric Andre is injected)", \
     min_value=0.0, max_value=1.0, value=0.5, step=0.05)
 
 if st.button('Generate!'):
     
-    st.image("./ericFace.gif")
+    st.image("images/ericFace.gif")
 
     generated_text = generate_some_text(seed, text_len)
     poetry_doc = nlp(generated_text)
@@ -168,23 +189,24 @@ if st.button('Generate!'):
     # Had these below writing prompts as a helper function, but then it broke.
     st.write("GPT-2 text: \n" + generated_text)
     st.header("The worst and the best:")
-    st.write("Worst by sentence relevance score:")
+    st.subheader("Worst by sentence relevance score:")
     st.write(worst_text_swapped)
     st.write("Internal sentence relevance score: ", worst_score)
-    st.write("Best by sentence relevance score:")
+    st.subheader("Best by sentence relevance score:")
     st.write(best_text_swapped)
     st.write("Internal sentence relevance score: ", best_score)
-    st.write("Worst by vector sum (plagiarism):")
+    st.subheader("Worst by vector sum (plagiarism):")
     st.write(worst_text_vector)
     st.write("Vector sum (plagiarism) score: ",  worst_vector_score)
-    st.write("Best by vector sum (plagiarism):")
+    st.subheader("Best by vector sum (plagiarism):")
     st.write(best_text_vector)
     st.write("Vector sum (plagiarism) score: ", best_vector_score)
 
     if save_output:
         save_poetry(worst_text_swapped, worst_score, best_text_swapped, \
             best_score, worst_text_vector, worst_vector_score, best_text_vector, \
-                best_vector_score, generated_text)     
+                best_vector_score, generated_text, text_len, generations, \
+                    temperature, episode_title)     
 
     if developer:
         # Plotting internal sentence score vs. vector sum score 
@@ -196,15 +218,15 @@ if st.button('Generate!'):
         score_data.set_ybound(0,1.1)
         st.pyplot(fig)
 
-        for i in range(3):
+        for i in range(4):
             waiting_voices()
 
 
-    # Speaking
-    system(worst_speech)
-    system(best_speech)
-    system(worst_vector_speech) 
-    system(best_vector_speech)
+    if speak_output:
+        system(worst_speech)
+        system(best_speech)
+        system(worst_vector_speech) 
+        system(best_vector_speech)
 
-    st.image("./endOfShow.jpg")
+    st.image("images/endOfShow.jpg")
     
