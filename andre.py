@@ -14,6 +14,7 @@ import re
 import random
 from word_embedding import *
 
+# Meaningful parts-of-speech
 SPECIAL_POS = ["ADJ", "ADV", "INTJ", "NOUN", "VERB"]
 
 class Andre:
