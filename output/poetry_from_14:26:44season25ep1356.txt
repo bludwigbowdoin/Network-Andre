@@ -1,0 +1,39 @@
+text-len: 100, generations: 400, temperature: 0.5
+ 
+ GPT-2 text: 
+Bowdoin College is a good place to ____." The word was written in the margin of the page, and the professor was not amused by it. "I'm afraid we're not allowed," she said. "That's all we're allowed to ____."
+
+This was not an uncommon occurrence when I was a student at the University of Iowa and, in fact, many students are surprised when I tell them that, as a child, I was banned from the campus library because of my ________. The list of forbidden topics
+ ----------------------------------------------------- 
+
+ 
+ Worst by sentence relevance score: 
+ bowdoin college is a leech janitor to _ _ _ _ .  the word was get in the tragic of the page , and the professor was not amused by it .  i m afraid we re not become ,  she said .  that s all we re allowed to _ _ _ _ .  
+
+ this was not an uncommon groups when i was a jail at the university of iowa and , in fact , many movie are surprised when i have them that , as a child , i was banned from the campus protein because of my _ _ _ _ well _ _ _ . the list of shooting oh
+Internal sentence relevance score: 10.263443758711219
+ ----------------------------------------------------- 
+
+ 
+ Best by sentence relevance score: 
+ bowdoin college is a good place to _ _ _ _ .  the oh was go in the margin of the guest , and the oh was not happening by it yeah  i m afraid we re not yes ,  she said . um that s all we re know to _ _ _ _ .  
+
+ this was not an uncommon occurrence when i was a student at the university of oh and , in nah , good students are surprised when oh tell them that , as a sores , yeah was do from the boss no because of my _ _ oh _ _ _ _ _ . the list of hurting topics
+
+ Internal sentence relevance score: 82.7104898262769
+ ----------------------------------------------------- 
+
+ 
+ Worst by vector sum (plagiarism): 
+ bowdoin college is a insensitive heart to _ _ _ _ .  the my was written in the chemistry of the da oh and the ow was not listen by it .  i m fantastic we re not pedal , uh she hang .  that s all we re didnt to yeah _ _ _ .  
+
+ this was not an hi occurrence when i was a ! at the university of iowa and , in oh , much oh are large when i love them that , as a child , i was introduce from the campus library because of my _ _ oh _ _ _ _ _ . the list of yeah hbic
+Vector sum (plagiarism) score: 0.32344152114849645
+ ----------------------------------------------------- 
+
+ 
+ Best by vector sum (plagiarism): 
+ bowdoin college is a good side to _ _ _ _ .  the aah was written in the margin of the my , and the professor was not amused by it .  i m hi we oh not allowed ,  she said .  that s all we re allowed to _ _ _ _ .  
+
+ this was not an uncommon support when i was a layers at the university of iowa oh , in fact , many students are surprised when i tell them that , whoa a child , i was banned from the campus mother because of my _ _ _ _ _ _ _ _ . the list of forbidden topics
+Vector sum (plagiarism) score: 0.8078502630266191

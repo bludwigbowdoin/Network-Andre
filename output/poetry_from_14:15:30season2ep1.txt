@@ -1,0 +1,87 @@
+text-len: 100, generations: 465, temperature: 0.5
+ 
+ GPT-2 text: 
+What is the meaning of life, Eric?
+
+It's a pretty basic question, really…
+
+I don't have one, Eric!
+
+I don't either, Eric. I guess what I'm saying is…
+
+I don't have one either.
+
+Well, I've always wanted to get married. I've always wanted to have children. I just never thought it would come to this.
+
+I can't imagine that either. I can't imagine being married to a man who doesn't even understand
+ ----------------------------------------------------- 
+
+ 
+ Worst by sentence relevance score: 
+ what is the congratulations of life , eric ? 
+
+ it s a just new no , really … 
+
+ i do nt have one , eric ! 
+
+ i cuckoo nt either , eric . i check what i m saying is … 
+
+ i do nt have one again . 
+
+ well , i ve even wanted to get married . i ve yeah hate to have children . i are there dont it would come to this . 
+
+ i ca nt imagine that either . i ca nt imagine being married to a im who does nt here check
+Internal sentence relevance score: 40.321210604626685
+ ----------------------------------------------------- 
+
+ 
+ Best by sentence relevance score: 
+ what is the meaning of life uh eric ? 
+
+ it yeah yeah pretty right oh well even … 
+
+ i do nt want one , eric ! 
+
+ i need nt either , eric . i worked what i m help is … yeah i do nt become one either . 
+
+ well , i ve always know yeah get laughing . i ve so wanted to yeah mustard . i just once do right would become to right yeah 
+
+ i ca nt imagine that just . right ca nt imagine being married to a oh who yeah nt even understand
+
+ Internal sentence relevance score: 147.82161649409682
+ ----------------------------------------------------- 
+
+ 
+ Worst by vector sum (plagiarism): 
+ what is im meaning of da , eric ? 
+
+ it s a just e question , really … 
+
+ i do nt named one , eric ! 
+
+ i yeah nt ever , eric . i guess what i m do is … 
+
+ i do nt have one im . 
+
+ well , i ve just go damn get married . uh im always dont to yeah front uh i yeah just making it would come to this . 
+
+ i ca uh laughing that just . i ca nt imagine being mean to a time who does nt even healed
+Vector sum (plagiarism) score: 0.7129240106519673
+ ----------------------------------------------------- 
+
+ 
+ Best by vector sum (plagiarism): 
+ what is the meaning of life , eric ? 
+
+ it s a pretty basic ♪ , here … 
+
+ i do nt come one , eric ! 
+
+ i doing nt once , eric . i added what i m saying is … 
+
+ i do nt have one ever . 
+
+ well , i ve always pick to get mean . yeah ve just knew to have children . i just never thought it would hate to this . 
+
+ i ca nt imagine that either . i ca nt think being married to a man who does nt even understand
+Vector sum (plagiarism) score: 0.9436162570697499

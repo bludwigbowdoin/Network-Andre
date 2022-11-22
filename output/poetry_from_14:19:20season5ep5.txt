@@ -1,0 +1,37 @@
+text-len: 100, generations: 400, temperature: 0.5
+ 
+ GPT-2 text: 
+Roses are red, violets are blue. They are the colors that make us feel warm. But when they're in your blood, the blood can be red, but not the color that makes you feel warm. So if you're a red-blooded animal, you're warm, you've got the same basic color system as us. But if you're an animal that has red blood cells and blue blood cells, the color that you have in your blood isn't warm."
+
+The research, published in the Proceedings of the National Academy
+ ----------------------------------------------------- 
+
+ 
+ Worst by sentence relevance score: 
+ hypocrite are coolest , mouth are blue . they are the colors that make us feel good . but when they re in your lot , the news can be beautiful , but not the ass that makes you oh original . so if you re a insensitive - conservative animal , you re second , you ve wish the same much tv bank as us . but if you no an animal that has latest people ow and blue blood man , the hostage that you have in your music whoa nt warm .  
+
+ the research , published in the proceedings of the national academy
+Internal sentence relevance score: 29.98753469856456
+ ----------------------------------------------------- 
+
+ 
+ Best by sentence relevance score: 
+ planet oh conservative , murder are blue . they are the colors that make us feel little . but when oh re in your yeah , cool blood can um red , oh not okay color that makes you doing coolest . so if you re a good - last animal , you re warm , you ve goin the same right color system please us . but if you yeah an spot that has insane oh cells and outrageous blood cells , the bank that you yeah in your hell is nt little .  oh the research , going in the proceedings of the national okay
+
+ Internal sentence relevance score: 111.52556956373155
+ ----------------------------------------------------- 
+
+ 
+ Worst by vector sum (plagiarism): 
+ homeboy are happy , makeup are blue . they are the girl that came us feel oh . but oh they re in your ahh , the blood can be last , but not the uh that do oh let middle . really if you re a real - blooded train , you re insane , you ve got the eastern basic ! voice as us . but if you re an animal that brought splendid people cells and blue okay vaccine , the color that you oh in your felony is nt warm .  
+
+ the brother whoa see in the proceedings of the no okay
+Vector sum (plagiarism) score: 0.46681481027887767
+ ----------------------------------------------------- 
+
+ 
+ Best by vector sum (plagiarism): 
+ roses are good , violets are blue . they are the way that make us feel warm . but when they re in your blood , the blood can be red , but not the color that makes you feel warm . so if you re a red - blooded apples , you re true , you ve wish the last basic color system as us . but if you re an sequel that get red blood cells and only blood face , the color that you have in your blood is nt warm .  
+
+ the cards , miss in the proceedings of the national academy
+Vector sum (plagiarism) score: 0.8962617370788639

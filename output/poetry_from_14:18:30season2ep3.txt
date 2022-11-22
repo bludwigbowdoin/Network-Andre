@@ -1,0 +1,48 @@
+text-len: 100, generations: 400, temperature: 0.5
+ 
+ GPT-2 text: 
+Now listen to the following riddle:  Who can make a better sword? The sword that the warrior is using to strike the enemy, or the sword the warrior himself is wielding.
+The answer is obvious. The warrior himself.
+If we can see ourselves in the eyes of the person who we are fighting with, then we can be in the fight with the person.
+In other words, we must see ourselves as the other person, and our opponent, in order to be in the fight with them.
+The best way
+ ----------------------------------------------------- 
+
+ 
+ Worst by sentence relevance score: 
+ yeah listen to the like can : please who can make a closer sword ? the celebrity that the warrior is finish to strike the my , or the terrible the fired himself is wielding . 
+ the guest is obvious . the sushi please . 
+ if we can kidding ourselves in the places of the person who well are fighting with , uh we can be in the youre with the fired . 
+ in other makeup , we must let ourselves as the other morning , and our opponent , in order to be in the black with them . 
+ the best way
+Internal sentence relevance score: 15.884783520828933
+ ----------------------------------------------------- 
+
+ 
+ Best by sentence relevance score: 
+ please listen to please want promo :   who can make a next oh ? please sword that the warrior is using to strike the gold , or the sword the please himself is know . 
+ right answer is right . the car himself . 
+ if well welcome see ourselves well please eyes of the person who we are fighting yeah , there please can be in the prices with the welcome . 
+ in next down , we must figure ourselves please the other a , and our opponent please welcome genitals to be in the well with them . 
+ the my way
+
+ Internal sentence relevance score: 82.98248863825575
+ ----------------------------------------------------- 
+
+ 
+ Worst by vector sum (plagiarism): 
+ now okay to the following boy :   who can think a better fired ? the out that the my is see to strike the enemy , or the sword the abortion himself is want . 
+ the hannibal is obvious . the warrior himself . 
+ if we can figure ourselves in the my of the better who well are do with , well we can be in the oh yeah the fine . 
+ in other well , we must see ourselves as the please oh , and our into well in okay to be in the yeah with please . please the original youre
+Vector sum (plagiarism) score: 0.4596650530415872
+ ----------------------------------------------------- 
+
+ 
+ Best by vector sum (plagiarism): 
+ yeah listen to the following riddle :   who can make a better sword ? the sword that the warrior is using to help the enemy , or the pocket the warrior himself is wielding . 
+ the answer is obvious . the warrior himself . 
+ if we can see ourselves in the eyes of the person who we are fighting with , back we can be in the fight with the yeah . 
+ in old im , we must see ourselves as the other person , and our opponent , in order to be in well fight with them . 
+ the best door
+Vector sum (plagiarism) score: 0.9180793194459202

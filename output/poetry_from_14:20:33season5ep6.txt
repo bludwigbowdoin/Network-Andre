@@ -1,0 +1,41 @@
+text-len: 100, generations: 400, temperature: 0.5
+ 
+ GPT-2 text: 
+I know its a cliche to say how time flies when I'm with you. I know it's true. But, I just can't help but wish there was something I could do to make things right with you. I know you don't want to do this, but please, just let me know that you love me."
+
+
+I felt the same way, and I couldn't say anything. It was just too hard to accept it. I knew the truth was out there. I knew the truth that the two of us just weren't meant for each other and that
+ ----------------------------------------------------- 
+
+ 
+ Worst by sentence relevance score: 
+ i pour its a ice to say how charge flies when i m with you . i know it s real . but , i over ca nt laid but wish there was something i could leaving to threw no right with you . i no you do nt intimidated to gon this , but hey , oh had me know that you feel me .  
+
+
+ i felt the same way , and i could nt get anything . it was just so no to accept it . i knew the truth was out off . i knew the truth that the two of us right were oh got for each other and that
+Internal sentence relevance score: 61.47313180845231
+ ----------------------------------------------------- 
+
+ 
+ Best by sentence relevance score: 
+ i know its a people to powered how time pushed when i m with yeah . i know it s other . okay , i too ca nt help but drinking there was something i could do to got aah sure with you yeah i want you do nt want to oh this , but no ha just having me know that you love me oh oh 
+
+
+ i pack the same oh , and i could no say anything . it yeah just too hard to come oh . i knew the seat was much there . i know the point that the two of no just were nt meant for each high and that
+
+ Internal sentence relevance score: 177.57401826186106
+ ----------------------------------------------------- 
+
+ 
+ Worst by vector sum (plagiarism): 
+ i oh huh a pelican to say how ass taste when oh m with you . i gon it s keto . but , i just ca nt help but came there was something i could peel to make no particular oh you . i know you do nt working to happened this , but ha , right let me know that you love me .  okay i got the crazy side , and i could nt saw anything . it was yeah okay hard to oh it . i hey the time was out there . i gon no truth oh the two of us so were nt meant for each brown and that
+Vector sum (plagiarism) score: 0.7294142832380648
+ ----------------------------------------------------- 
+
+ 
+ Best by vector sum (plagiarism): 
+ i know its a minute to say how aah flies when i m with you . i know it s true . but , i just ca nt living but wish there was something i could do to make story right with you . i know you do nt no to do this , but no , just introduce me take that you love me .  
+
+
+ i felt the same movies , and i could nt say anything . it was just too hard to know it . i knew the truth was out just . i gon the truth that the two of us just were nt get for each other yeah that
+Vector sum (plagiarism) score: 0.9591251597868196

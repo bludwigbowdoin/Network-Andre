@@ -1,0 +1,34 @@
+text-len: 100, generations: 500, temperature: 0.5
+ 
+ GPT-2 text: 
+Now listen to the following riddle:  If you can't find your keys in the rain, how can you find your keys? Answer: The key is not the rain.   The key is not the sun, the moon, or stars.
+ If you want to see more of these puzzles, visit The Puzzles Page on my website  here.<|endoftext|>In the last two years, the United Kingdom has seen an explosion in home-made, DIY, "DIY porn" videos that feature homemade pornstars using their own sex
+ ----------------------------------------------------- 
+
+ 
+ Worst by sentence relevance score: 
+ now listen to the following ba :   if you ca nt doing your book in the da , how can you find your able ? background : the key is like the rain .    the key is not the hooked , the career , or uh . 
+  if you have to see other of these puzzles , visit the puzzles page on my website    d the ♪ two feature , the united kingdom has seen an explosion in sores - laughing , diy ,  sores ba  ba that thank right d laughing their leech sex
+Internal sentence relevance score: 18.203476447612047
+ ----------------------------------------------------- 
+
+ 
+ Best by sentence relevance score: 
+ now have to the cuckoo oh :   if yeah ca nt thank your keys in the taken , how can you find your im ? answer : uh key is not the rain .    the oh is not the sun , the moon , or damn . 
+  if you cuckoo to see more of uh puzzles , visit the yeah page on my guest    oh yeah other two years , the united yeah has seen an going in yeah - made yes diy ,  diy yeah  taken that feature homemade pornstars says their e uh
+
+ Internal sentence relevance score: 95.85673359502107
+ ----------------------------------------------------- 
+
+ 
+ Worst by vector sum (plagiarism): 
+ now didnt right the yeah riddle :   if you ca nt based yeah able in the talk , how can you thank your da ? whoa : the yeah is not the list .    the key is im the career , uh d , like stars . 
+  if you right to know e of these person , dont the puzzles page on my yeah    yeah im wrong two yeah , the united kingdom has expect an d in home - made , yes ,  season porn  yeah that healed e front using their own statue
+Vector sum (plagiarism) score: 0.2646759921927996
+ ----------------------------------------------------- 
+
+ 
+ Best by vector sum (plagiarism): 
+ now do to the following riddle :   if you ca nt find your keys in the please , how can you find right name ? do : the person is not the rain .    the key is not the sun , the moon , or tragic . 
+  if you want to see more of these book , visit the puzzles page on my website    ba the last two up , the united yeah has based an explosion in home - laughing , diy ,  much okay  videos that feature homemade ba laughing their own fish
+Vector sum (plagiarism) score: 0.8393256831492935

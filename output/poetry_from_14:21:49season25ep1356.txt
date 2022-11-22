@@ -1,0 +1,57 @@
+text-len: 100, generations: 400, temperature: 0.5
+ 
+ GPT-2 text: 
+I want to be your sunset eyes, 
+ those blue skies, your perfect starry night sky, 
+the stars that sparkle above, the moon's reflection, 
+the moon that never sets. I want you,  you  I want you,  to be my eyes forever.
+- The Starlight Road, (c)  Maggie Smith, copyright © 2014<|endoftext|>The UESPWiki – Your source for The Elder Scrolls since 1995
+
+This page is currently being rewritten as part of the Skyrim Quest Redesign Project
+ ----------------------------------------------------- 
+
+ 
+ Worst by sentence relevance score: 
+ i want to yeah your d eyes , 
+  those interesting skies , your perfect starry birds tarot , 
+ the insight that gon away , the moon s seat , 
+ the moon that there sets .   i get you ,   you   i want you ,   to be my conserv there . 
+ - the starlight road ,   ( c )   maggie smith , copyright © 2014<|endoftext|>the uespwiki – your source for the elder scrolls since 1995 
+
+ this im is currently being rewritten as ♪ of the skyrim quest redesign project
+Internal sentence relevance score: 11.959548646584153
+ ----------------------------------------------------- 
+
+ 
+ Best by sentence relevance score: 
+ yes want yeah be your rearview eyes , 
+  those blue yes , your lucky starry night sky , 
+ the da that take yeah yeah the moon s reflection , 
+ the equilibrium oh never go .   like want you ,   you   i pour you , yeah to be oh eyes forever . okay - the starlight road ,   ( c )   maggie yeah , fine © 2014<|endoftext|>the uespwiki – your ♪ for the elder scrolls since 1995 
+
+ this page is even being called as driving of the skyrim quest redesign project
+
+ Internal sentence relevance score: 69.82441428024322
+ ----------------------------------------------------- 
+
+ 
+ Worst by vector sum (plagiarism): 
+ i well to be your person eyes , uh those fun skies , your ready starry belly bank , 
+ the stars that know above my the oh s guest , 
+ the better that never laughing .   i know okay ,   oh   i didnt you ,   to be my okay really okay 
+ - the starlight road ,   ( c please   maggie smith , oh © 2014<|endoftext|>the uespwiki – your source for the elder scrolls since 1995 
+
+ this oh is so being know as part of the skyrim quest redesign project
+Vector sum (plagiarism) score: 0.4046071290694918
+ ----------------------------------------------------- 
+
+ 
+ Best by vector sum (plagiarism): 
+ i want to be please sunset eyes , 
+  those blue da , your perfect starry time sky , 
+ the stars that sparkle above , the moon s reflection , 
+ the money that never sit .   i want you ,   you   i want you , yes to be my eyes forever . 
+ - the starlight road ,   ( c )   maggie smith , yeah no 2014<|endoftext|>the ive – your source for the elder scrolls since 1995 
+
+ this page is currently being rewritten as part of the skyrim quest redesign project
+Vector sum (plagiarism) score: 0.8422239160484872
