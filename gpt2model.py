@@ -10,6 +10,12 @@ from that repo by adjusting the size of the gpt2 model and removing unnecessary
 imports and functions for my purposes. Comments and documentation are original 
 to the creator of the repo. 
 
+The choose_from_top function uses a given probabilistic structure to return an 
+ID for an associated token to use in the text generation. 
+
+The generate_some_text function uses the gpt2 model to generate text with 
+text_len number of words given an input_string prompt. 
+
 gist.github.com/mf1024/430d7fd6ff527350d3e4b5bda0d8614e#file-gpt2-medium_text_gen-ipynb
 """
 
