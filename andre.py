@@ -17,7 +17,7 @@ class Andre:
 
     def set_text(self):
         # Data prep
-        with open(self.title) as f:
+        with open("episodes/" + self.title) as f:
             contents = re.sub(r'someword=|\,.*|\#.*','', f.read())
             contents = re.sub(r'\n+', '\n', contents).strip()
 
@@ -28,14 +28,6 @@ class Andre:
         config = {"punct_chars": ['\n']}
         self.nlp.add_pipe("sentencizer", config=config)
         return self.doc.sents
-
-    def no_stop_words(self):
-        token_list = []
-        for token in self.doc:
-            if not token.is_stop:
-                token_list.append(token)
-        
-        return token_list
 
     def tokens_pos(self):
         # for all tokens in self, organize them by part-of-speech
@@ -60,7 +52,6 @@ class Andre:
 
         return output_list 
 
-
     def swap_within_pos(self, poetry, temperature):
         output_string = ""
         # initialize new poem output string 
@@ -81,26 +72,4 @@ class Andre:
             else:
                 output_string = output_string + " " + token.text 
         return output_string 
-
-
-
-# nlp = spacy.load("en_core_web_sm")
-# matcher = Matcher(nlp.vocab)
-
-# poetry_doc = nlp("the rose is the most beautiful color of the shirt that he kicks down the road and on and on forever lovely.")
-
-# andre = Andre(nlp, "season25ep1356.txt")
-# andre.set_text()
-
-# output = andre.swap_within_pos(poetry_doc, 0.3)
-
-# print(andre.lemmatize_useful_words(poetry_doc))
-
-# print(sentence_score(andre.lemmatize_useful_words(poetry_doc)))
-
-# 
-
-
-
-
 

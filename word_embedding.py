@@ -35,22 +35,6 @@ def similarity_score(word_1, word_2):
         normalized_embeddings[index[word_2], :])
     return score
 
-def closest_to_vector(vector, number_of_neighbors):
-    """
-    This function was taken from the repo at top of file
-    """
-    all_scores = np.dot(normalized_embeddings, vector)
-    best_words = list(map(lambda i: english_words[i], \
-        reversed(np.argsort(all_scores))))
-    return best_words[:number_of_neighbors]
-
-def most_similar(word, number_of_neighbors):
-    """
-    This function was taken from the repo at top of file
-    """
-    return closest_to_vector(normalized_embeddings[index[word], :], \
-        number_of_neighbors)
-
 def sentence_score(sentence):
     """
     Pass in a sentence list where the words are only meaningful words 
@@ -63,7 +47,6 @@ def sentence_score(sentence):
             second_word = sentence[second_word_index]
             pair_score = similarity_score(first_word, second_word)
             score += pair_score
-
 
     return score 
 
@@ -97,25 +80,5 @@ def vector_addition_score(sentence_1, sentence_2):
 
 
 
-# print(sentence_score(["dog", "dasjfh", "what", "comes", "later"]))
 
-
-# # A word is as similar with itself as possible:
-# print('cat\tcat\t', similarity_score('cat', 'cat'))
-# # Closely related words still get high scores:
-# print('cat\tfeline\t', similarity_score('cat', 'feline'))
-# print('cat\tdog\t', similarity_score('cat', 'dog'))
-# # Unrelated words, not so much
-# print('cat\tmoo\t', similarity_score('cat', 'moo'))
-# print('cat\tfreeze\t', similarity_score('cat', 'freeze'))
-# # Antonyms are still considered related, sometimes more so than synonyms
-# print('antonym\topposite\t', similarity_score('antonym', 'opposite'))
-# print('antonym\tsynonym\t', similarity_score('antonym', 'synonym'))
-
-
-
-
-# print(most_similar('cat', 10))
-# print(most_similar('dog', 10))
-# print(most_similar('duke', 10))
 

@@ -4,8 +4,8 @@ from os import system
 import random
 import re
 import spacy
-from spacy.matcher import Matcher
 import matplotlib.pyplot as plt
+import time
 from transformers import GPT2Tokenizer, GPT2LMHeadModel
 from gpt2model import *
 from andre import *
@@ -16,13 +16,55 @@ EPISODES = ['season2ep1.txt', 'season2ep3.txt', 'season5ep5.txt', \
 VOICES = ["Fred", "Ralph", "Trinoids", "Whisper", "Zarvox"]
 SEEDS = ["I want to be your sunset eyes, \n those blue skies, your perfect starry night", \
     "Throw rocks at my window, \n Hold the boom box up high. ", \
-        "I know you love cheesy love songs, \n So here’s one for you my dear", \
+        "I know you love cheesy love songs, \n So here's one for you my dear", \
             "I wish I could write a book, \n It would be about me and you", \
                 "Roses are red, violets are blue.",\
                     "I know its a cliche to say how time flies when I'm with you."]
 
+
+def developer_text(generated_text, poetry_score, swapped_output, \
+    swapped_score, vector_sum_score):
+    st.write("GPT-2 text: \n" + generated_text)
+    st.write("Internal sentence relevance score: ", poetry_score)
+    st.write(swapped_output)
+    st.write("Internal sentence relevance score: ", swapped_score)
+    st.write("Vector sum (plagiarism) score between poetry and generated text: ", \
+        vector_sum_score)
+    st.write("-----------------------------------------------")
+
+def save_poetry(worst_text_swapped, worst_score, best_text_swapped, \
+    best_score, worst_text_vector, worst_vector_score, best_text_vector, \
+        best_vector_score, generated_text):
+    curr_time = time.strftime("%H:%M:%S", time.localtime())
+    file_name = 'poetry_from_' + curr_time + '.txt'
+    with open("output/" + file_name, 'w') as f:
+        f.write("GPT-2 text: \n" + generated_text)
+        f.write("\n \n Worst by sentence relevance score: \n")
+        f.write(str(worst_text_swapped) + "\n")
+        f.write("Internal sentence relevance score: " + str(worst_score))
+        f.write("\n \n Best by sentence relevance score: \n")
+        f.write(str(best_text_swapped)+ "\n")
+        f.write("\n Internal sentence relevance score: " + str(best_score))
+        f.write("\n \n Worst by vector sum (plagiarism): \n")
+        f.write(str(worst_text_vector)+ "\n")
+        f.write("Vector sum (plagiarism) score: " + str(worst_vector_score))
+        f.write("\n \n Best by vector sum (plagiarism): \n")
+        f.write(str(best_text_vector)+ "\n")
+        f.write("Vector sum (plagiarism) score: " + str(best_vector_score))
+        f.write("\n")
+
+def waiting_voices():
+    rand_voice = random.choice(VOICES)
+    speech_text = "say -v " + rand_voice + " \" loading \""
+    system(speech_text)
+    rand_voice = random.choice(VOICES)
+    speech_text = "say -v " + rand_voice + " \" waiting \""
+    system(speech_text)
+    rand_voice = random.choice(VOICES)
+    speech_text = "say -v " + rand_voice + " \" thinking \""
+    system(speech_text)
+
 nlp = spacy.load("en_core_web_lg")
-matcher = Matcher(nlp.vocab)
 
 # Streamlit page config
 st.set_page_config(
@@ -33,6 +75,7 @@ st.title("Network Andre")
 st.image("./ericAndreShow.jpg")
 
 developer = st.checkbox('Developer mode')   # dev mode toggle
+save_output = st.checkbox('Save output in .txt file')
 episode_title = st.selectbox('Source episode', EPISODES)
 andre_doc = Andre(nlp, episode_title)
 andre_doc.set_text()
@@ -45,16 +88,12 @@ if st.checkbox("Write your own seed"):
 else:   
     seed = st.selectbox("Seed", SEEDS)
 
-text_len = st.number_input("Approximate length of response (in words)", \
+text_len = st.number_input("Approximate length of response (in words, max 500)", \
     min_value=1, max_value=500, value=30)
-
-generations = st.number_input("Number of content generations (max 5000)", \
-    min_value=1, max_value=5000, value=50)
-
-
+generations = st.number_input("Number of content generations (max 1000)", \
+    min_value=1, max_value=1000, value=50)
 temperature = st.slider("Temperature (how much Eric Andre)", \
     min_value=0.0, max_value=1.0, value=0.5, step=0.05)
-
 
 if st.button('Generate!'):
     
@@ -65,7 +104,7 @@ if st.button('Generate!'):
     poetry_useful_words = andre_doc.lemmatize_useful_words(poetry_doc)
     poetry_score = sentence_score(poetry_useful_words)
 
-    # worst and best by sentence score 
+    # worst and best by sentence relevance score 
     worst_text_swapped = ""
     best_text_swapped = ""
     worst_score = 100000000000
@@ -74,8 +113,7 @@ if st.button('Generate!'):
     best_speech = ""
     sentence_scores = []
 
-
-    # worst and best by vector score
+    # worst and best by vector (plagiarism) score
     worst_text_vector = ""
     best_text_vector = ""
     worst_vector_score = 1.0
@@ -123,53 +161,46 @@ if st.button('Generate!'):
             worst_vector_speech = speech_text
 
         if developer:
-            st.write("GPT-2 text: \n" + generated_text)
-            st.write("Internal sentence score: ", poetry_score)
-            st.write(swapped_output)
-            st.write("Internal sentence score: ", swapped_score)
-            st.write("Vector sum score between poetry and generated text: ", \
-                vector_sum_score)
-            st.write("-----------------------------------------------")
+            developer_text(generated_text, poetry_score, swapped_output, \
+                swapped_score, vector_sum_score)
 
 
+    # Had these below writing prompts as a helper function, but then it broke.
+    st.write("GPT-2 text: \n" + generated_text)
     st.header("The worst and the best:")
-    st.write("Worst by sentence score:")
+    st.write("Worst by sentence relevance score:")
     st.write(worst_text_swapped)
-    st.write("Internal sentence score: ", worst_score)
-
-    st.write("Best by sentence score:")
+    st.write("Internal sentence relevance score: ", worst_score)
+    st.write("Best by sentence relevance score:")
     st.write(best_text_swapped)
-    st.write("Internal sentence score: ", best_score)
-
-    st.write("Worst by vector sum:")
+    st.write("Internal sentence relevance score: ", best_score)
+    st.write("Worst by vector sum (plagiarism):")
     st.write(worst_text_vector)
-    st.write("Vector sum score: ",  worst_vector_score)
-
-    st.write("Best by vector sum:")
+    st.write("Vector sum (plagiarism) score: ",  worst_vector_score)
+    st.write("Best by vector sum (plagiarism):")
     st.write(best_text_vector)
-    st.write("Vector sum score: ", best_vector_score)
+    st.write("Vector sum (plagiarism) score: ", best_vector_score)
 
+    if save_output:
+        save_poetry(worst_text_swapped, worst_score, best_text_swapped, \
+            best_score, worst_text_vector, worst_vector_score, best_text_vector, \
+                best_vector_score, generated_text)     
 
     if developer:
+        # Plotting internal sentence score vs. vector sum score 
         fig, score_data = plt.subplots()
-        score_data.scatter(sentence_scores, vector_scores)   
-        score_data.set_xlabel("Internal Sentence Score")
-        score_data.set_ylabel("Vector Sum Score")
+        sizes = [10] * len(vector_scores)
+        score_data.scatter(sentence_scores, vector_scores, sizes)   
+        score_data.set_xlabel("Internal Sentence Relevance Score")
+        score_data.set_ylabel("Vector Sum (Plagiarism) Score")
         score_data.set_ybound(0,1.1)
         st.pyplot(fig)
 
+        for i in range(3):
+            waiting_voices()
 
-    for i in range(3):
-        rand_voice = random.choice(VOICES)
-        speech_text = "say -v " + rand_voice + " \" loading \""
-        system(speech_text)
-        rand_voice = random.choice(VOICES)
-        speech_text = "say -v " + rand_voice + " \" waiting \""
-        system(speech_text)
-        rand_voice = random.choice(VOICES)
-        speech_text = "say -v " + rand_voice + " \" thinking \""
-        system(speech_text)
 
+    # Speaking
     system(worst_speech)
     system(best_speech)
     system(worst_vector_speech) 
