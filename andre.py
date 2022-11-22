@@ -1,7 +1,7 @@
 """
 Bjorn Ludwig
 CSCI 3725
-PQ2: Presentation Day
+M6: Poetry Slam
 11/22/2022
 
 This file contains the Andre class, which defines a number of useful functions
@@ -31,6 +31,7 @@ class Andre:
         self.title = title
         self.full_text = ''
 
+
     def set_text(self):
         """
         Processes the episode's .txt file, sets the instance's text, and sets 
@@ -47,6 +48,7 @@ class Andre:
         self.full_text = contents
         self.doc = self.nlp(self.full_text)
 
+
     def sentences(self):
         """
         Incorporates newlines as sentence ends. 
@@ -57,6 +59,7 @@ class Andre:
         config = {"punct_chars": ['\n']}
         self.nlp.add_pipe("sentencizer", config=config)
         return self.doc.sents
+
 
     def tokens_pos(self):
         """
@@ -80,6 +83,7 @@ class Andre:
                 pos_dict[token.pos_] = word_list
         return pos_dict
 
+
     def lemmatize_useful_words(self, poetry):
         """
         Lemmatize (shorten to base form) each token in the given poetry 
@@ -96,6 +100,7 @@ class Andre:
                 output_list.append(token.lemma_)
 
         return output_list 
+
 
     def swap_within_pos(self, poetry, temperature):
         """
