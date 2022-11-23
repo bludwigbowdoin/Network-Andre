@@ -2,6 +2,13 @@
 
 ### Description of work:
 
+Regarding The Eric Andre Show, one anonymous Redditor wrote: 
+>"For me, absurdist comedy works best as absurdism does; a juxtaposition and commentary on how we are so detached from the reality of our world, how we struggle so desperately and courageously to fit in, only to fail time and time again. The character of Eric Andre wants to be liked, wants to be funny, but has these f---ing insane and deluded concepts he's unequipped to execute even in his wildest dreams."
+
+
+
+
+Talk about absurdism 
 
 ### How to set up and run the code:
 
