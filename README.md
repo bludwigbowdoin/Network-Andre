@@ -1,6 +1,5 @@
 # Network Andre 
 
-
 ### Description of work:
 
 
@@ -56,10 +55,34 @@ any user interface systems like this before, so there was definitely a bit of
 a learning curve. I had to think of things I hadn't thought of before regarding 
 the ease-of-use for the user, and that experience was valuable to me. 
 
+Another challenge I faced along the way was determing when to stop implementing 
+new ideas. Once I got my base ideas down, a whole floodgate of new directions 
+opened. Since deadlines do indeed exist, I had to eventually settle on which 
+ideas I would fully implement so that my product would function well. At this 
+point, I feel this is a project I could continually come back to and 
+improve, which is a really cool thing! It was super useful having the challenge
+in this open-ended project to set my own goal state, since in the real world 
+there are rarely assignments with discrete end states. 
+
 
 ### Three scholarly papers in computer science that inspired your approach, and how:
 
-  You can research scholarly papers to include by using Google Scholar Links to an external site..
+This [first paper](https://arxiv.org/pdf/2110.12765.pdf) ("“So You Think You’re 
+Funny?”: Rating the Humour Quotient in Standup Comedy") had a very relevant 
+goal of quantifying a humor quotient for comedy given loads of audio-visual 
+stand-up comedy material. The primary analysis was done on the duration of the 
+laughter for a given joke. The researchers built an LSTM neural network for 
+this analysis. I found this paper inspiring in that it dealt direclty with 
+comedy, quantifying comedy, and neural networks. I did not have the capacity to 
+do any sort of similar laughter analysis, and their resulting models proved to 
+complex for me to incoporate, but the paper was still inspiring. 
+
+This [second paper](https://arxiv.org/pdf/2004.12765.pdf) ("Computational Humor 
+Using BERT Sentence Embedding in Parallel Neural Networks")
+
+
+
+You can research scholarly papers to include by using Google Scholar Links to an external site..
 
 
 
