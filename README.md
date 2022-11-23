@@ -37,6 +37,24 @@ folder for some arbitrarily created examples.
 
 ### How working on this system challenged me as a computer scientist:
 
+Regarding neural networks, my original idea was to train my own model on the
+Eric Andre episode texts. I had some experience in the past using TensorFlow, 
+and was able to train the model on the Bowdoin HPC server, but I was 
+ultimately unable to work with the model on my own laptop due to issues in 
+compatability of TensorFlow with Apple Silicon chips. On paper, TensorFlow 
+should work on Apple Silicon, but after a number of hours attempting the 
+installs and discovering a disgruntled community with the same issue online, I 
+changed gears. This led me to use the established GPT-2 model from OpenAI. I 
+knew it could generate decent text, and then I could use spaCy components to 
+analyze the generated text and the Eric Andre text, and hopefully do something 
+cool with those components. 
+
+A second are of challenge I faced in this project was working with the 
+Streamlit user interface. I once had a partner in a group project use 
+Streamlit, but I never knew how to use it myself until now. I hadn't created 
+any user interface systems like this before, so there was definitely a bit of 
+a learning curve. I had to think of things I hadn't thought of before regarding 
+the ease-of-use for the user, and that experience was valuable to me. 
 
 
 ### Three scholarly papers in computer science that inspired your approach, and how:
