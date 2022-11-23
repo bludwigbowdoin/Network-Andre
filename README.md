@@ -67,8 +67,8 @@ there are rarely assignments with discrete end states.
 
 ### Three scholarly papers in computer science that inspired your approach, and how:
 
-This [first paper](https://arxiv.org/pdf/2110.12765.pdf) ("“So You Think You’re 
-Funny?”: Rating the Humour Quotient in Standup Comedy") had a very relevant 
+This [first paper](https://arxiv.org/pdf/2110.12765.pdf) ("'So You Think You’re 
+Funny?': Rating the Humour Quotient in Standup Comedy") had a very relevant 
 goal of quantifying a humor quotient for comedy given loads of audio-visual 
 stand-up comedy material. The primary analysis was done on the duration of the 
 laughter for a given joke. The researchers built an LSTM neural network for 
@@ -78,11 +78,14 @@ do any sort of similar laughter analysis, and their resulting models proved to
 complex for me to incoporate, but the paper was still inspiring. 
 
 This [second paper](https://arxiv.org/pdf/2004.12765.pdf) ("Computational Humor 
-Using BERT Sentence Embedding in Parallel Neural Networks")
+Using BERT Sentence Embedding in Parallel Neural Networks") also deals with 
+comedy, and its goal was to classify whether a given text was humorous or not. 
+There was originally some potential for me to utilize this model, but due to 
+its creation via Keras (thus TensorFlow), I could not apply this model on my 
+computer. 
 
-
-
-You can research scholarly papers to include by using Google Scholar Links to an external site..
-
-
-
+This [third paper](https://towardsdatascience.com/teaching-gpt-2-a-sense-of-humor-fine-tuning-large-transformer-models-on-a-single-gpu-in-pytorch-59e8cec40912)
+("Teaching GPT-2 transformer a sense of humor") is not an offically published 
+paper, but its goal was to train a neural network that could make one-liner 
+style jokes. The nascent stages of this paper's model are what my gpt2model.py 
+file piggy-backs directly off of.  
