@@ -3,12 +3,39 @@
 ### Description of work:
 
 Regarding The Eric Andre Show, one anonymous Redditor wrote: 
->"For me, absurdist comedy works best as absurdism does; a juxtaposition and commentary on how we are so detached from the reality of our world, how we struggle so desperately and courageously to fit in, only to fail time and time again. The character of Eric Andre wants to be liked, wants to be funny, but has these f---ing insane and deluded concepts he's unequipped to execute even in his wildest dreams."
+>"For me, absurdist comedy works best as absurdism does; a juxtaposition and 
+commentary on how we are so detached from the reality of our world, how we 
+struggle so desperately and courageously to fit in, only to fail time and 
+time again. The character of Eric Andre wants to be liked, wants to be funny, 
+but has these f---ing insane and deluded concepts he's unequipped to execute 
+even in his wildest dreams."
 
+Network Andre's primary goal is to capture at least part of the absurdism Eric 
+Andre so deftly exibits. Instead of operating as a neural network that 
+generates Eric-Andre-like text, Network Andre adapts neural-network-generated 
+text to the style of Eric Andre. This is done through a sort of Eric Andre 
+injection, wherein a given word in the neural-network-generated text is 
+swapped for a word of the same part-of-speech found in a selected episode of 
+The Eric Andre Show. To evolve past the mere generation aspect of simply 
+plugging in new words to generated texts, two scoring systems are introduced: 
+one an internal sentence score, the other a type of plagiarism score. The 
+former takes all distinct pairwise similarities of a given output and sums them, 
+while the latter treats outputs as one big vector sum to compare against the 
+original output sum. 
 
+The text seed can be truly unique to the user. Although poetry was one of the 
+main goals of the project, seeds can be cheesy poetic, slightly philosophical, 
+riddle-like, or virtually anything else. After enough experimentation, some 
+aspect of the output is likely to put a smile on your face, while other aspects 
+might leave you dumbfounded, confused, or even uncomfortable. A viewer of The 
+Eric Andre Show is susceptible to the exact same feelings. Although vulgarity 
+is possible if not probable in the output, any outputs that exhibit offensive 
+or biggoted behavior are not intended. I attempted to mitigate this aspect by 
+using the most up-to-date numberbatch word embeddings (which purposefully 
+combat discriminatory tendencies), but this was by no means a leak-proof fix. 
+I apologize in advance, and I do not condone any offensive or biggoted output 
+this system may generate. 
 
-
-Talk about absurdism 
 
 ### How to set up and run the code:
 
