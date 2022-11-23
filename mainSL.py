@@ -126,7 +126,7 @@ andre_doc = Andre(nlp, episode_title)  # Instance of Andre based on episode
 andre_doc.set_text()
 
 if st.checkbox("Write your own seed"): 
-    seed = st.text_input("Seed")
+    seed = st.text_input("Seed (a sentence or two ... don't get too crazy)")
 
 else:   
     seed = st.selectbox("Seed", SEEDS)
