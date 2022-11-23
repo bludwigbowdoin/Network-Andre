@@ -98,6 +98,20 @@ improve, which is a really cool thing! It was super useful having the challenge
 in this open-ended project to set my own goal state, since in the real world 
 there are rarely assignments with discrete end states. 
 
+Conceptually, the hardest aspect was quantifying absurdity. I knew my path to 
+this end would involve word embeddings, but after examining Eric Andre's own 
+absurdist examples, it is often hard to see more than just a jumbled stream-of-
+consciousness sprinkled with impulsive interjections. The internal 
+sentence scoring system was my first attempt at absurdity, with the idea that a 
+low score would signal low cross-sentence relevance between words. I paired 
+this scoring system with the vector sum plagiarism score I devised because I 
+thought outputs especially different from the neural-network-generated text 
+would tend to be more absurd. After all, I did not believe GPT-2 had any innate
+absurdist tendencies. If I could improve a single aspect of the system, I 
+would focus on this absurdism scoring area. I would dive into the absurdism 
+between special pairs of words instead of all pairs will nilly as I have done. 
+This would hopefully produce more strategically absurdist results. 
+
 
 ### Three scholarly papers in computer science that inspired your approach, and how:
 
