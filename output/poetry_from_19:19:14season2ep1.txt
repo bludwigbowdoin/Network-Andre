@@ -1,0 +1,49 @@
+text-len: 30, generations: 50, temperature: 0.5
+ 
+ GPT-2 text: 
+I know its a cliche to say how time flies when I'm with you. The truth is, it doesn't!
+
+It doesn't because we're still together.
+
+It doesn't because our love and support will
+ ----------------------------------------------------- 
+
+ 
+ Worst by sentence relevance score: 
+ i know its a cliche to do how do like when i right with you . the truth is , it laughing nt ! 
+
+ it does nt because we re ever together . 
+
+ it does nt because our book and support will
+Internal sentence relevance score: 5.946337290108204
+ ----------------------------------------------------- 
+
+ 
+ Best by sentence relevance score: 
+ i do its a going to uh how time flies when uh m with uh . the truth is right it do nt ! 
+
+ it does nt because we re even ever . 
+
+ it does nt because our uh and support will
+
+ Internal sentence relevance score: 25.065982814878225
+ ----------------------------------------------------- 
+
+ 
+ Worst by vector sum (plagiarism): 
+ i check its a da to mean how designer do when i m with you . the okay is , it does nt ! 
+
+ it does nt because we re there ever . 
+
+ it does nt because our movie and im uh
+Vector sum (plagiarism) score: 0.5059963101060289
+ ----------------------------------------------------- 
+
+ 
+ Best by vector sum (plagiarism): 
+ i know its a cliche to say how time flies when i m with you . the morning is , it does nt ! 
+
+ it does nt because we right still just . 
+
+ it does nt because our love and support will
+Vector sum (plagiarism) score: 0.831728534935414

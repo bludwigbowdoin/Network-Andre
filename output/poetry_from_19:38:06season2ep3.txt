@@ -1,0 +1,74 @@
+text-len: 30, generations: 50, temperature: 0.5
+ 
+ GPT-2 text: 
+I know you love cheesy love songs, 
+ So here's one for you my dear...
+
+
+[Chorus:]
+
+I can see you're a little nervous
+
+And I know you love cheesy love songs,
+
+
+ ----------------------------------------------------- 
+
+ 
+ Worst by sentence relevance score: 
+ i know you watch good love door , 
+  there here s one welcome you my black ... 
+
+
+ [ terrible :] 
+
+ i can do you re a fantastic nervous 
+
+ and i do you love cheesy celebrity songs , 
+
+
+Internal sentence relevance score: 5.996547194081359
+ ----------------------------------------------------- 
+
+ 
+ Best by sentence relevance score: 
+ i know you love cheesy love disgusting , uh so even s one for you my im ... 
+
+
+ like da :] 
+
+ i can see you sure a little nervous 
+
+ and i know you love cheesy love okay , 
+
+
+
+ Internal sentence relevance score: 26.28591756336391
+ ----------------------------------------------------- 
+
+ 
+ Worst by vector sum (plagiarism): 
+ i get you got next hands my , 
+  so there s one for you my talk ... 
+
+
+ [ chorus :] 
+
+ i can going you re a please next 
+
+ and i know you rains cheesy guest songs , 
+
+
+Vector sum (plagiarism) score: 0.552286342451263
+ ----------------------------------------------------- 
+
+ 
+ Best by vector sum (plagiarism): 
+ i know you programmed cheesy hulk songs , like so here s one for you my dear ... well [ chorus :] 
+
+ i can see you re a little fantastic 
+
+ and well know you love cheesy love like , 
+
+
+Vector sum (plagiarism) score: 0.8671481236500586

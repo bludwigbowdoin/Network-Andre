@@ -4,10 +4,15 @@ CSCI 3725
 M6: Poetry Slam
 11/22/2022
 
-This file contains 
+This file operates as both the "main" executer of the functions from other 
+files as well as the Streamlit builder. Many of the lines in this file are 
+rather trivial st.write statements, and I moved as many as I could into helper 
+functions, but some would not behave unless written explicitly in the code. 
+There are many lines to this file, but the majority of the algorithm based 
+thinking is done in the other 3 .py files. 
 
-
-
+To execute this file, type 'streamlit run mainSL.py' into the command line 
+while in the Poetry-Slam directory.            
 """
 
 import streamlit as st
@@ -21,22 +26,28 @@ import time
 from gpt2model import *
 from andre import *
 
-
 EPISODES = ['season2ep1.txt', 'season2ep3.txt', 'season5ep5.txt', \
     'season5ep6.txt', 'season25ep1356.txt']
 VOICES = ["Fred", "Ralph", "Trinoids", "Zarvox"]
 SEEDS = ["What is the meaning of life, Eric?", \
     "Now listen to the following riddle: ", \
-        "I want to be your sunset eyes, \n those blue skies, your perfect starry night", \
+        "I want to be your sunset eyes, \n those blue skies, your \
+perfect starry night", \
             "Throw rocks at my window, \n Hold the boom box up high. ", \
-                "I know you love cheesy love songs, \n So here's one for you my dear", \
-                    "I wish I could write a book, \n It would be about me and you", \
+                "I know you love cheesy love songs, \n So here's one for \
+you my dear", \
+                    "I wish I could write a book, \n It would be about \
+me and you", \
                         "Roses are red, violets are blue.",\
-                            "I know its a cliche to say how time flies when I'm with you."]
+                            "I know its a cliche to say how time flies \
+when I'm with you."]
 
 
 def developer_text(generated_text, poetry_score, swapped_output, \
     swapped_score, vector_sum_score):
+    """
+    Simple helper function to write output when developer mode is on. 
+    """
     st.write("GPT-2 text: \n" + generated_text)
     st.write("Internal sentence relevance score: ", poetry_score)
     st.write(swapped_output)
@@ -45,10 +56,15 @@ def developer_text(generated_text, poetry_score, swapped_output, \
         vector_sum_score)
     st.write("-----------------------------------------------")
 
+
 def save_poetry(worst_text_swapped, worst_score, best_text_swapped, \
     best_score, worst_text_vector, worst_vector_score, best_text_vector, \
         best_vector_score, generated_text,text_len, generations, \
             temperature, episode_title):
+    """
+    Simple helper function to save the output when the user checks box to 
+    save output as a .txt file. 
+    """
     curr_time = time.strftime("%H:%M:%S", time.localtime())
     file_name = 'poetry_from_' + curr_time + episode_title
     with open("output/" + file_name, 'w') as f:
@@ -73,7 +89,13 @@ def save_poetry(worst_text_swapped, worst_score, best_text_swapped, \
         f.write("Vector sum (plagiarism) score: " + str(best_vector_score))
         f.write("\n")
 
+
 def waiting_voices():
+    """
+    In order to delay the official output voices when all of the developer 
+    information is printed (and to sound cool) this function chooses random 
+    voices to speak "loading," "waiting," and "thinking" cues. 
+    """
     rand_voice = random.choice(VOICES)
     speech_text = "say -v " + rand_voice + " \" loading \""
     system(speech_text)
@@ -83,6 +105,7 @@ def waiting_voices():
     rand_voice = random.choice(VOICES)
     speech_text = "say -v " + rand_voice + " \" thinking \""
     system(speech_text)
+
 
 nlp = spacy.load("en_core_web_lg")
 
@@ -94,14 +117,13 @@ st.set_page_config(
 st.title("Network Andre")
 st.image("images/ericAndreShow.jpg")
 
-developer = st.checkbox('Developer mode')   # dev mode toggle
+developer = st.checkbox('Developer mode (shows all generations and plot)') 
 save_output = st.checkbox('Save output in .txt file')
 speak_output = st.checkbox('Speak generated output')
 episode_title = st.selectbox('Source episode', EPISODES)
-andre_doc = Andre(nlp, episode_title)
+
+andre_doc = Andre(nlp, episode_title)  # Instance of Andre based on episode
 andre_doc.set_text()
-sent_list = list(andre_doc.sentences())
-rand_sent = random.choice(sent_list)
 
 if st.checkbox("Write your own seed"): 
     seed = st.text_input("Seed")
@@ -118,9 +140,9 @@ temperature = st.slider("Temperature (how much Eric Andre is injected)", \
 
 if st.button('Generate!'):
     
-    st.image("images/ericFace.gif")
+    st.image("images/ericFace.gif")    # Fun loading image 
 
-    generated_text = generate_some_text(seed, text_len)
+    generated_text = generate_some_text(seed, text_len) 
     poetry_doc = nlp(generated_text)
     poetry_useful_words = andre_doc.lemmatize_useful_words(poetry_doc)
     poetry_score = sentence_score(poetry_useful_words)
@@ -143,6 +165,9 @@ if st.button('Generate!'):
     best_vector_speech = ""
     vector_scores = []
 
+    # Generate new poetry examples via swap for 'generations' number of times 
+    #   and keep track of the best and worst for each of the two scoring 
+    #   methods to be printed at the end and saved.
     for i in range(generations):
 
         swapped_output = andre_doc.swap_within_pos(poetry_doc, temperature)
@@ -182,6 +207,7 @@ if st.button('Generate!'):
             worst_vector_speech = speech_text
 
         if developer:
+            # Iteratively prints all outpus for user examination 
             developer_text(generated_text, poetry_score, swapped_output, \
                 swapped_score, vector_sum_score)
 
@@ -209,7 +235,7 @@ if st.button('Generate!'):
                     temperature, episode_title)     
 
     if developer:
-        # Plotting internal sentence score vs. vector sum score 
+        # Plotting internal sentence score vs. vector sum (plagiarism) score 
         fig, score_data = plt.subplots()
         sizes = [10] * len(vector_scores)
         score_data.scatter(sentence_scores, vector_scores, sizes)   
@@ -228,5 +254,5 @@ if st.button('Generate!'):
         system(worst_vector_speech) 
         system(best_vector_speech)
 
-    st.image("images/endOfShow.jpg")
+    st.image("images/endOfShow.jpg")    # Fun conclusion image 
     

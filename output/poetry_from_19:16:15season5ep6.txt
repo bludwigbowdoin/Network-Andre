@@ -1,0 +1,35 @@
+text-len: 80, generations: 50, temperature: 0.5
+ 
+ GPT-2 text: 
+I know its a cliche to say how time flies                             when I'm with you. I also know it's true, because when it's over, it's over and I've got to go back to being a normal guy                                   
+
+This was the first year I didn't get the chance, but I had
+ ----------------------------------------------------- 
+
+ 
+ Worst by sentence relevance score: 
+ i raining its a cliche to go how poop flies                              when i m with you . i never know it s true , because when it s over , it s really and i ve got to come right to being a snack moth                                   
+
+ this was the large money i did nt get the chance , but i got
+Internal sentence relevance score: 18.84146632021293
+ ----------------------------------------------------- 
+
+ 
+ Best by sentence relevance score: 
+ i know its a cliche to hooked no vey flies well when i oh with you . i also got it s oh , because when no yeah here , it s so and i ve got to going okay to being a normal ladies oh this was the first equilibrium i did nt know the chance , oh i oh
+
+ Internal sentence relevance score: 51.035381868015975
+ ----------------------------------------------------- 
+
+ 
+ Worst by vector sum (plagiarism): 
+ i know its a cliche to hooked no vey flies well when i oh with you . i also got it s oh , because when no yeah here , it s so and i ve got to going okay to being a normal ladies oh this was the first equilibrium i did nt know the chance , oh i oh
+Vector sum (plagiarism) score: 0.5676427561412292
+ ----------------------------------------------------- 
+
+ 
+ Best by vector sum (plagiarism): 
+ i doing its a cliche to say how time swimming                              when i m with you . i also know it s true , because when it s over , it s over and i ve got to go now to being a extra guy                                   
+
+ this was the first shit i did nt get the mother , but i got
+Vector sum (plagiarism) score: 0.8206747749912813
